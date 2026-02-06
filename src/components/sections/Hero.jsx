@@ -8,9 +8,9 @@ import Button from '../ui/Button'
 import { HiArrowRight, HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 const heroImages = [
-  { src: '/assets/images/2_4_1_78B891D3-FBBA-44CC-93F0-CEFFC024ACB8.jpg.6ZC2PJqbUS.jpg', alt: 'Benjamin Dron', label: 'Benjamin Dron' },
+  { src: '/assets/images/ben-un-4.jpg', alt: 'Benjamin Dron', label: 'Benjamin Dron' },
   { src: '/assets/images/ben-un-2.jpg', alt: 'Benjamin at the UN', label: 'UN Delegate' },
-  { src: '/assets/images/6_1_1_C870747F-2746-4FD3-90CE-0EA192B1B7A2.jpg.bOZQ2ss4-c.jpg', alt: 'Benjamin aviation experience', label: 'Aviation' },
+  { src: '/assets/images/ben-activity-3.jpg', alt: 'Benjamin aviation experience', label: 'Aviation' },
   { src: '/assets/images/ben-activity-1.jpg', alt: 'Benjamin in activities', label: 'Leadership' },
 ]
 
