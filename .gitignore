@@ -27,3 +27,8 @@ Thumbs.db
 # Cache
 *.cache
 .cache/
+
+# Project-specific folders to ignore
+idea dms/
+Media/
+AmbroseMamdaniTransitionPortfolio-main/
