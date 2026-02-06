@@ -1,8 +1,10 @@
 /**
  * Contact Section Component
  * Light blue theme
+ * Performance optimized with React.memo
  */
 
+import { memo } from 'react'
 import { Button } from '../ui'
 import { HiMail, HiPhone, HiLocationMarker, HiClock, HiArrowRight } from 'react-icons/hi'
 
@@ -130,4 +132,4 @@ function Contact() {
   )
 }
 
-export default Contact
+export default memo(Contact)

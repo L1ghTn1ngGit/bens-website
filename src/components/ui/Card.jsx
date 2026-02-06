@@ -1,12 +1,15 @@
 /**
  * Card Component
  * A reusable card container with consistent styling
+ * Performance optimized with React.memo
  * 
  * Props:
  * - children: Card content
  * - className: Additional custom classes
  * - hoverable: Whether card has hover effect (default: true)
  */
+
+import { memo } from 'react'
 
 function Card({ 
   children, 
@@ -30,4 +33,4 @@ function Card({
   )
 }
 
-export default Card
+export default memo(Card)

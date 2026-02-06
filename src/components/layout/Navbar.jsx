@@ -1,21 +1,35 @@
 /**
  * Navbar Component
  * Light blue theme
+ * Performance optimized with throttled scroll and React.memo
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import Button from '../ui/Button'
+
+// Throttle helper
+const throttle = (func, delay) => {
+  let lastCall = 0
+  return (...args) => {
+    const now = Date.now()
+    if (now - lastCall >= delay) {
+      lastCall = now
+      func(...args)
+    }
+  }
+}
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
+    }, 100) // Throttle scroll events to every 100ms
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -111,4 +125,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default memo(Navbar)

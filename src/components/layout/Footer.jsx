@@ -1,8 +1,10 @@
 /**
  * Footer Component
  * Light blue theme
+ * Performance optimized with React.memo
  */
 
+import { memo } from 'react'
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi'
 import { FaLinkedin } from 'react-icons/fa'
 
@@ -111,4 +113,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default memo(Footer)

@@ -1,9 +1,10 @@
 ﻿/**
  * Hero Section Component
  * Light blue theme — crossfade carousel with Media photos
+ * Performance optimized: lazy loading, React.memo, responsive images
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import Button from '../ui/Button'
 import { HiArrowRight, HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
@@ -101,7 +102,7 @@ function Hero() {
           <div className="order-1 lg:order-2 flex justify-center animate-fade-in-right delay-200">
             <div className="relative w-full max-w-2xl">
               
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[28rem] md:h-[36rem]" style={{ border: '3px solid rgba(37, 99, 235, 0.2)' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl hero-carousel" style={{ border: '3px solid rgba(37, 99, 235, 0.2)' }}>
                 {/* Stacked images with crossfade */}
                 {heroImages.map((image, idx) => (
                   <div 
@@ -115,8 +116,13 @@ function Hero() {
                     <img 
                       src={image.src} 
                       alt={image.alt}
+                      loading={idx === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
                       className="w-full h-full object-cover"
-                      style={idx === 0 || idx === 1 ? { objectPosition: 'center 35%' } : {}}
+                      style={{
+                        ...(idx === 0 || idx === 1 ? { objectPosition: 'center 55%' } : {}),
+                        contentVisibility: 'auto'
+                      }}
                     />
                   </div>
                 ))}
@@ -175,4 +181,4 @@ function Hero() {
   )
 }
 
-export default Hero
+export default memo(Hero)

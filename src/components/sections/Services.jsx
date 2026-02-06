@@ -1,8 +1,10 @@
 /**
  * Services Section Component
  * Warm ink wash theme with service cards
+ * Performance optimized with React.memo
  */
 
+import { memo } from 'react'
 import { 
   HiCalculator, 
   HiBookOpen, 
@@ -152,4 +154,4 @@ function Services() {
   )
 }
 
-export default Services
+export default memo(Services)

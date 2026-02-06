@@ -1,9 +1,10 @@
 /**
  * Gallery Section Component
  * Displays photos of Benjamin in action
+ * Performance optimized: lazy loading, React.memo, responsive aspect ratios
  */
 
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { SectionHeading } from '../ui'
 import { HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
@@ -52,12 +53,15 @@ function Gallery() {
             <div 
               key={index}
               onClick={() => openLightbox(index)}
-              className="relative aspect-square overflow-hidden cursor-pointer group"
+              className="relative overflow-hidden cursor-pointer group gallery-card"
             >
               <img 
                 src={image.src}
                 alt={image.alt}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                style={{ contentVisibility: 'auto' }}
               />
               {/* Overlay with category */}
               <div className="absolute inset-0 bg-primary-900/0 group-hover:bg-primary-900/50 transition-colors duration-300 flex items-end justify-start p-3">
@@ -106,7 +110,8 @@ function Gallery() {
             <img 
               src={images[selectedIndex].src}
               alt={images[selectedIndex].alt}
-              className="max-w-full max-h-[85vh] object-contain"
+              loading="eager"
+              className="max-w-full max-h-[85vh] object-contain lightbox-image"
               onClick={(e) => e.stopPropagation()}
             />
             
@@ -122,4 +127,4 @@ function Gallery() {
   )
 }
 
-export default Gallery
+export default memo(Gallery)

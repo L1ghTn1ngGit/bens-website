@@ -312,3 +312,138 @@
 .card-flip-inner.flipping {
   transform: rotateY(90deg);
 }
+/* ═══════════════════════════════════════════════════════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Responsive aspect ratios for images on narrow screens (portrait mobile) */
+/* On thin screens (portrait), change images to 3:4 or 9:16 aspect ratio */
+@media (max-width: 640px) and (orientation: portrait) {
+  .gallery-card,
+  .hero-carousel,
+  .about-image {
+    aspect-ratio: 3 / 4 !important;
+  }
+}
+
+/* For very narrow screens, use 9:16 aspect ratio */
+@media (max-width: 480px) and (orientation: portrait) {
+  .gallery-card {
+    aspect-ratio: 9 / 16 !important;
+  }
+}
+
+/* Hero carousel responsive height on narrow screens */
+.hero-carousel {
+  height: 28rem;
+}
+
+@media (min-width: 768px) {
+  .hero-carousel {
+    height: 36rem;
+  }
+}
+
+@media (max-width: 640px) and (orientation: portrait) {
+  .hero-carousel {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* Gallery cards with responsive aspect ratios */
+.gallery-card {
+  aspect-ratio: 1 / 1; /* Default square */
+}
+
+/* CSS Containment for better rendering performance */
+.card,
+.skill-card,
+.frost-box {
+  contain: layout style paint;
+}
+
+/* Optimize animations with will-change (only when actively animating) */
+.animate-fade-in-up,
+.animate-fade-in-left,
+.animate-fade-in-right,
+.animate-float,
+.animate-float-slow,
+.animate-float-delayed {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes to free resources */
+.animate-fade-in-up,
+.animate-fade-in-left,
+.animate-fade-in-right {
+  animation-fill-mode: forwards;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delayed {
+    animation: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  img {
+    transition: none !important;
+  }
+}
+
+/* Image loading optimization */
+img {
+  content-visibility: auto;
+}
+
+/* Optimize font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU acceleration for smooth transforms */
+.card,
+.skill-card,
+.btn-primary,
+.btn-secondary,
+.btn-accent {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize lightbox image rendering */
+.lightbox-image {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Optimize scrolling performance */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Reduce paint areas during scrolling */
+.frost-box,
+.card {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

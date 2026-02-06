@@ -2,9 +2,22 @@
  * FloatingDecorations Component
  * Scattered education-themed SVG icons across the full background
  * with dramatic parallax scroll, glow effects, varied sizes & rotation.
+ * Performance optimized: throttled scroll, IntersectionObserver, reduced count on low-end devices
  */
 
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+
+// Throttle helper for scroll events
+const throttle = (func, delay) => {
+  let lastCall = 0
+  return (...args) => {
+    const now = Date.now()
+    if (now - lastCall >= delay) {
+      lastCall = now
+      func(...args)
+    }
+  }
+}
 
 /* ── Outline SVG icons — 24 varieties ── */
 const icons = {
@@ -220,15 +233,22 @@ function seededRng(seed) {
 function FloatingDecorations() {
   const rafRef = useRef(null)
   const itemRefs = useRef([])
+  const [isVisible, setIsVisible] = useState(true)
+  const containerRef = useRef(null)
 
   /* ── Poisson-disk-ish grid: 7×7 grid, 2 per cell, jittered, with min-distance ── */
   const items = useMemo(() => {
     const rand = seededRng(77)
     const placed = []
 
-    const cols = 7
-    const rows = 7
-    const perCell = 2
+    // Reduce decoration count on low-end devices
+    const cores = navigator.hardwareConcurrency || 4
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const cellReduction = (cores <= 2 || prefersReducedMotion) ? 0.5 : (cores <= 4 ? 0.75 : 1)
+
+    const cols = Math.ceil(7 * cellReduction)
+    const rows = Math.ceil(7 * cellReduction)
+    const perCell = prefersReducedMotion ? 1 : 2
     const cellW = 100 / cols
     const cellH = 100 / rows
 
@@ -296,9 +316,23 @@ function FloatingDecorations() {
     }).join('\n')
   }, [items])
 
-  /* ── scroll-driven parallax (rAF) ── */
+  /* ── scroll-driven parallax (rAF) - throttled ── */
   useEffect(() => {
-    const onScroll = () => {
+    const container = containerRef.current
+    if (!container) return
+
+    // IntersectionObserver to pause when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+      },
+      { threshold: 0, rootMargin: '100px' }
+    )
+    observer.observe(container)
+
+    // Throttled scroll handler for better performance
+    const onScroll = throttle(() => {
+      if (!isVisible) return
       if (rafRef.current) return
       rafRef.current = requestAnimationFrame(() => {
         const sy = window.scrollY
@@ -310,20 +344,29 @@ function FloatingDecorations() {
         })
         rafRef.current = null
       })
-    }
+    }, 16) // ~60fps max
+
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
+      observer.disconnect()
       window.removeEventListener('scroll', onScroll)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [items])
+  }, [items, isVisible])
 
   return (
     <>
       <style>{keyframeCSS}</style>
       <div
+        ref={containerRef}
         className="pointer-events-none"
-        style={{ position: 'fixed', inset: 0, zIndex: 1, overflow: 'hidden' }}
+        style={{ 
+          position: 'fixed', 
+          inset: 0, 
+          zIndex: 1, 
+          overflow: 'hidden',
+          contentVisibility: isVisible ? 'auto' : 'hidden'
+        }}
         aria-hidden="true"
       >
         {items.map((item, idx) => (

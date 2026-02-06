@@ -1,6 +1,7 @@
 /**
  * Button Component
  * A reusable button component with different style variants
+ * Performance optimized with React.memo
  * 
  * Props:
  * - children: Button text/content
@@ -9,6 +10,8 @@
  * - onClick: Optional click handler
  * - className: Additional custom classes
  */
+
+import { memo } from 'react'
 
 function Button({ 
   children, 
@@ -64,4 +67,4 @@ function Button({
   )
 }
 
-export default Button
+export default memo(Button)

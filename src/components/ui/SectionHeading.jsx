@@ -1,6 +1,7 @@
 /**
  * SectionHeading Component
  * Consistent heading style for all sections
+ * Performance optimized with React.memo
  * 
  * Props:
  * - title: Main heading text
@@ -8,6 +9,8 @@
  * - centered: Whether to center the text (default: true)
  * - className: Additional custom classes
  */
+
+import { memo } from 'react'
 
 function SectionHeading({ 
   title, 
@@ -35,4 +38,4 @@ function SectionHeading({
   )
 }
 
-export default SectionHeading
+export default memo(SectionHeading)

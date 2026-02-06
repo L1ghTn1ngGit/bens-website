@@ -1,8 +1,10 @@
 /**
  * About Section Component
  * Light blue theme — bilingual info about Benjamin with Media images
+ * Performance optimized: lazy loading, React.memo
  */
 
+import { memo } from 'react'
 import { HiAcademicCap, HiMusicNote, HiBriefcase, HiExternalLink } from 'react-icons/hi'
 
 function About() {
@@ -57,8 +59,10 @@ function About() {
                 <img 
                   src="/assets/images/ben-un-3.jpg" 
                   alt="Benjamin Dron at the United Nations"
-                  className="w-full object-cover object-center"
-                  style={{ aspectRatio: '4/3' }}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover object-center about-image"
+                  style={{ aspectRatio: '4/3', contentVisibility: 'auto' }}
                 />
               </div>
               
@@ -160,4 +164,4 @@ function About() {
   )
 }
 
-export default About
+export default memo(About)

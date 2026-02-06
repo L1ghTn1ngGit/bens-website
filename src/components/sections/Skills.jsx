@@ -1,9 +1,10 @@
 /**
  * Skills Section Component
  * Card carousel showcasing Benjamin's tutoring skills - SVG icons only
+ * Performance optimized with React.memo
  */
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 /* SVG Icon components */
@@ -228,4 +229,4 @@ function Skills() {
   )
 }
 
-export default Skills
+export default memo(Skills)
