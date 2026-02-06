@@ -1,131 +1,129 @@
 /**
  * Contact Section Component
- * Contact information and form link
+ * Light blue theme
  */
 
-import { SectionHeading, Button, Card } from '../ui'
-import { HiMail, HiPhone, HiLocationMarker, HiClock, HiPencil, HiBookOpen, HiAcademicCap } from 'react-icons/hi'
+import { Button } from '../ui'
+import { HiMail, HiPhone, HiLocationMarker, HiClock, HiArrowRight } from 'react-icons/hi'
 
 function Contact() {
-  // Contact info items
   const contactInfo = [
     {
       icon: HiMail,
       title: 'Email',
       content: 'bendronedu@gmail.com',
       href: 'mailto:bendronedu@gmail.com',
+      color: 'rgba(37, 99, 235, 0.08)',
+      iconColor: '#2563EB',
     },
     {
       icon: HiPhone,
       title: 'Phone',
       content: '(929) 669-5022',
       href: 'tel:+19296695022',
+      color: 'rgba(16, 185, 129, 0.08)',
+      iconColor: '#10B981',
     },
     {
       icon: HiLocationMarker,
       title: 'Locations',
-      content: 'Staten Island (10314), Brooklyn (11229), Remote',
+      content: 'Staten Island, Brooklyn, Remote',
       href: null,
+      color: 'rgba(99, 102, 241, 0.08)',
+      iconColor: '#6366F1',
     },
     {
       icon: HiClock,
       title: 'Availability',
-      content: 'Flexible scheduling available',
+      content: 'Flexible scheduling',
       href: null,
+      color: 'rgba(245, 158, 11, 0.08)',
+      iconColor: '#F59E0B',
     },
   ]
 
   return (
-    <section id="contact" className="section bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-700 relative overflow-hidden">
-      {/* Floating Background Icons */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] text-white/10 animate-float">
-          <HiPencil className="w-16 h-16" />
-        </div>
-        <div className="absolute bottom-20 right-[10%] text-white/10 animate-float-slow">
-          <HiBookOpen className="w-20 h-20" />
-        </div>
-        <div className="absolute top-1/2 right-[5%] text-white/5 animate-drift">
-          <HiAcademicCap className="w-24 h-24" />
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="section relative overflow-hidden">
+      <div className="container-custom relative z-10">
+        <div className="frost-box" style={{ width: '78vw', maxWidth: '78vw', marginLeft: '50%', transform: 'translateX(-50%)' }}>
         
-        {/* Section Heading - White text for dark background */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Get In Touch
-          </h2>
-          <div className="w-20 h-1 bg-white mx-auto mb-6"></div>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Ready to start your learning journey? Fill out the contact form or reach out directly!
+        {/* Section Heading */}
+        <div className="text-center mb-8">
+          <span className="eyebrow animate-fade-in-up">Let's Connect</span>
+          <h2 className="section-title animate-fade-in-up delay-100">Get In Touch</h2>
+          <p className="section-subtitle animate-fade-in-up delay-200">
+            Ready to start your learning journey? Reach out today!
           </p>
         </div>
         
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
           
-          {/* Left Side - Contact Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Left Side - Contact Info Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-left delay-200">
             {contactInfo.map((item, index) => (
-              <Card key={index} className="bg-white/10 backdrop-blur border-white/20" hoverable={false}>
+              <div 
+                key={index} 
+                className="p-4 rounded-xl transition-all duration-200 cursor-pointer active:scale-95"
+                style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(37, 99, 235, 0.08)' }}
+              >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-white/20 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-white" />
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: item.color }}>
+                    <item.icon className="w-5 h-5" style={{ color: item.iconColor }} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">{item.title}</h4>
+                    <h4 className="font-semibold text-sm mb-0.5" style={{ color: '#1a2332' }}>{item.title}</h4>
                     {item.href ? (
                       <a 
                         href={item.href}
-                        className="text-white/80 hover:text-white transition-colors text-sm"
+                        className="transition-colors text-sm"
+                        style={{ color: '#6b7280' }}
                       >
                         {item.content}
                       </a>
                     ) : (
-                      <p className="text-white/80 text-sm">{item.content}</p>
+                      <p className="text-sm" style={{ color: '#6b7280' }}>{item.content}</p>
                     )}
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
           
           {/* Right Side - CTA Card */}
-          <Card className="bg-white text-center lg:text-left" hoverable={false}>
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="p-8 rounded-3xl shadow-lg animate-fade-in-right delay-300" style={{ background: 'rgba(255, 255, 255, 0.8)', border: '1px solid rgba(37, 99, 235, 0.1)' }}>
+            <h3 className="text-xl font-bold mb-3" style={{ color: '#1a2332' }}>
               Ready to Get Started?
             </h3>
-            <p className="text-gray-600 mb-6">
-              Fill out our registration form to book tutoring sessions with Benjamin's 
-              Tutoring Services. After submission, I'll contact you by text or email 
-              to confirm scheduling. Pricing is flexible and based on your situation.
+            <p className="mb-5 leading-relaxed text-sm" style={{ color: '#6b7280' }}>
+              Fill out our registration form to book tutoring sessions. After submission, 
+              I'll contact you by text or email to confirm scheduling.
             </p>
             
             {/* Bilingual Note */}
-            <p className="text-gray-500 text-sm mb-6 italic">
-              Также доступна поддержка на русском языке. 
-              (Russian language support available)
-            </p>
+            <div className="rounded-xl p-4 mb-6" style={{ background: 'rgba(37, 99, 235, 0.03)', border: '1px solid rgba(37, 99, 235, 0.08)' }}>
+              <p className="text-sm" style={{ color: '#6b7280' }}>
+                <span className="font-semibold" style={{ color: '#2563EB' }}>RU</span> &mdash; <span className="italic">Также доступна поддержка на русском языке.</span>
+              </p>
+              <p className="text-xs mt-1" style={{ color: '#9ca3af' }}>(Russian language support available)</p>
+            </div>
             
             {/* CTA Button */}
             <Button 
               href="https://forms.gle/njc1mkTmSNtNuCa99"
               variant="primary"
-              className="w-full sm:w-auto"
+              className="w-full justify-center"
             >
               Register Now
+              <HiArrowRight className="ml-2 w-4 h-4" />
             </Button>
             
             {/* Additional Info */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <p className="text-sm text-gray-500">
-                <strong>Note:</strong> Tutoring sessions are priced based on situation. 
-                Payment details will be discussed after scheduling is confirmed.
-              </p>
-            </div>
-          </Card>
+            <p className="mt-4 text-xs text-center" style={{ color: '#9ca3af' }}>
+              Pricing is flexible and based on your situation.
+            </p>
+          </div>
+        </div>
         </div>
       </div>
     </section>

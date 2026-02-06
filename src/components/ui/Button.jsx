@@ -20,17 +20,18 @@ function Button({
 }) {
   // Define styles for each variant
   const variants = {
-    primary: 'bg-primary-500 text-white hover:bg-primary-600 shadow-md hover:shadow-lg',
-    secondary: 'bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white',
-    accent: 'bg-accent-500 text-white hover:bg-accent-600 shadow-md hover:shadow-lg',
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    accent: 'btn-accent',
   }
 
   // Base styles shared by all buttons
   const baseStyles = `
     inline-flex items-center justify-center
-    px-6 py-3 
-    font-medium 
-    transition-all duration-300
+    px-6 py-3 rounded-lg
+    font-medium text-sm
+    transition-all duration-200
+    active:scale-95
     cursor-pointer
     ${variants[variant]}
     ${className}
@@ -38,12 +39,12 @@ function Button({
 
   // If href is provided, render as a link
   if (href) {
+    const isExternal = href.startsWith('http')
     return (
       <a 
         href={href} 
         className={baseStyles}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         {...props}
       >
         {children}
