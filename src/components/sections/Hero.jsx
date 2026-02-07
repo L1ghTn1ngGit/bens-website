@@ -46,6 +46,10 @@ function Hero() {
           
           {/* Left Side - Text Content */}
           <div className="order-2 sm:order-1 text-left px-1 sm:px-0 flex flex-col justify-center h-full">
+            <span className="eyebrow animate-fade-in-up">
+              {h.eyebrow[language]}
+            </span>
+            
             <h1 className="font-bold mb-4 leading-tight animate-fade-in-up delay-100" style={{ color: '#1a2332', fontSize: 'clamp(2rem, 6vw, 3.9375rem)' }}>
               {h.titleLine1[language]}
               <span className="block hero-text-glow" style={{ color: '#1a4fd8' }}>{h.titleLine2[language]}</span>
@@ -101,12 +105,7 @@ function Hero() {
             <div className="relative w-full mx-auto hero-carousel-wrap">
               
               <div className="relative rounded-2xl overflow-hidden shadow-2xl hero-carousel hero-carousel-glow" style={{ border: '5px solid rgba(26, 79, 216, 0.25)' }}>
-                {/* Experience Badge - Top Left */}
-                <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg animate-float z-20" style={{ background: 'rgba(26, 79, 216, 0.08)', border: '1px solid rgba(26, 79, 216, 0.15)' }}>
-                  <p className="text-[10px] sm:text-xs font-semibold" style={{ color: '#1a4fd8' }}>{h.eyebrow[language]}</p>
-                </div>
-                
-                {/* 5+ Subjects Badge - Top Right */}
+                {/* 5+ Subjects Badge */}
                 <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg animate-float-delayed z-20" style={{ background: 'linear-gradient(135deg, #1a4fd8, #2563EB)' }}>
                   <p className="text-[10px] sm:text-xs font-bold" style={{ color: '#ffffff' }}>{h.subjects[language]}</p>
                 </div>
