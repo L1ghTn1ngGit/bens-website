@@ -42,10 +42,10 @@ function Hero() {
       className="flex items-center relative overflow-hidden pt-16 pb-8"
     >
       <div className="max-w-full w-full px-3 sm:px-6 lg:px-12 py-6 sm:py-10 md:py-12 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 lg:gap-16 xl:gap-20 2xl:gap-24 items-center justify-center mx-auto" style={{ maxWidth: 'min(95%, 96rem)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 lg:gap-16 xl:gap-20 2xl:gap-24 items-start justify-center mx-auto" style={{ maxWidth: 'min(95%, 96rem)' }}>
           
           {/* Left Side - Text Content */}
-          <div className="order-2 sm:order-1 text-left px-1 sm:px-0">
+          <div className="order-2 sm:order-1 text-left px-1 sm:px-0 flex flex-col justify-center h-full">
             <span className="eyebrow animate-fade-in-up">
               {h.eyebrow[language]}
             </span>
