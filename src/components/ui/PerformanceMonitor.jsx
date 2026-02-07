@@ -18,28 +18,52 @@ const TIER_HIGH = 'perf-high'
 const TIER_MEDIUM = 'perf-medium'
 const TIER_LOW = 'perf-low'
 
+// Detect if running in a WebView or limited environment
+function detectLowEndDevice() {
+  const ua = navigator.userAgent || ''
+  const cores = navigator.hardwareConcurrency || 2
+  const memory = navigator.deviceMemory || 2 // GB, defaults to 2 if unsupported
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // WebView detection (Android WebView, iOS WKWebView, Electron, etc.)
+  const isWebView = /(wv|WebView|\.0\.0\.0\s|Version\/[0-9.]+\sMobile.*Safari|; wv\)|FB[A-Z]|Instagram|Twitter|Line\/|GSA\/)/i.test(ua)
+  // Old browser detection
+  const isOldBrowser = !window.CSS?.supports?.('backdrop-filter', 'blur(1px)') && !window.CSS?.supports?.('-webkit-backdrop-filter', 'blur(1px)')
+  // Check for no WebGL (no GPU acceleration)
+  let hasWebGL = false
+  try {
+    const canvas = document.createElement('canvas')
+    hasWebGL = !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+  } catch (e) { /* no GPU */ }
+
+  if (prefersReduced) return 'low'
+  if (!hasWebGL || memory <= 1) return 'low'
+  if (isOldBrowser || (isWebView && cores <= 4)) return 'low'
+  if (isWebView || cores <= 2 || memory <= 2) return 'medium'
+  if (cores <= 4) return 'medium'
+  return 'high'
+}
+
 function PerformanceMonitor() {
   const fpsHistory = useRef([])
   const frameCount = useRef(0)
   const lastTime = useRef(performance.now())
   const currentTier = useRef(TIER_HIGH)
   const rafRef = useRef(null)
-  const stabilityCounter = useRef(0) // prevent rapid tier switching
+  const stabilityCounter = useRef(0)
 
   useEffect(() => {
     const html = document.documentElement
 
-    // Set initial tier
-    html.classList.add(TIER_HIGH)
-    window.__perfTier = 'high'
-
-    // Quick initial check — if device seems low-end, start at medium
-    const cores = navigator.hardwareConcurrency || 4
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) {
+    // Set initial tier based on device detection
+    const initialTier = detectLowEndDevice()
+    if (initialTier === 'low') {
       setTier(TIER_LOW)
-    } else if (cores <= 2) {
+    } else if (initialTier === 'medium') {
       setTier(TIER_MEDIUM)
+    } else {
+      html.classList.add(TIER_HIGH)
+      window.__perfTier = 'high'
     }
 
     function setTier(newTier) {

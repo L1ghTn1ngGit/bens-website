@@ -1,10 +1,10 @@
 /**
  * InteractiveBlobs Component
  * Soft blue blobs with passive drift + mouse repulsion on light background
- * Performance optimized: reduced count on low-end devices, pauses when off-screen, throttled events
+ * Performance optimized: skips entirely on low-end devices, reduced count on medium tier
  */
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 // Detect device performance tier
 const getOptimalBlobCount = (requestedCount) => {
@@ -13,11 +13,11 @@ const getOptimalBlobCount = (requestedCount) => {
   const isMobile = window.innerWidth < 768
   const perfTier = window.__perfTier || 'high'
   
-  if (prefersReducedMotion || perfTier === 'low') return Math.floor(requestedCount * 0.15)
-  if (perfTier === 'medium') return Math.floor(requestedCount * 0.3)
-  if (isMobile) return Math.floor(requestedCount * 0.3)
-  if (cores <= 2) return Math.floor(requestedCount * 0.3)
-  if (cores <= 4) return Math.floor(requestedCount * 0.5)
+  if (prefersReducedMotion || perfTier === 'low') return 0 // completely skip on low
+  if (perfTier === 'medium') return Math.floor(requestedCount * 0.2)
+  if (isMobile) return Math.floor(requestedCount * 0.25)
+  if (cores <= 2) return Math.floor(requestedCount * 0.25)
+  if (cores <= 4) return Math.floor(requestedCount * 0.4)
   return requestedCount
 }
 
@@ -39,8 +39,8 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
   const mouseRef = useRef({ x: -1000, y: -1000 })
   const animFrameRef = useRef(null)
   const timeRef = useRef(0)
-  const [isVisible, setIsVisible] = useState(true)
-  const [isPaused, setIsPaused] = useState(false)
+  const isVisibleRef = useRef(true)
+  const isPausedRef = useRef(false)
 
   // Soft blue palette for light background
   const defaultColors = [
@@ -61,11 +61,13 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
     const container = containerRef.current
     if (!container) return
 
-    const rect = container.getBoundingClientRect()
-    const fullH = Math.max(document.documentElement.scrollHeight, rect.height)
-
     // Get optimized blob count based on device capabilities
     const optimalCount = getOptimalBlobCount(count)
+    if (optimalCount === 0) return // Skip entirely on low-end devices
+
+    const perfTier = window.__perfTier || 'high'
+    const rect = container.getBoundingClientRect()
+    const fullH = Math.max(document.documentElement.scrollHeight, rect.height)
 
     // Initialize blobs distributed across entire page height
     blobsRef.current = Array.from({ length: optimalCount }, (_, i) => {
@@ -92,25 +94,28 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
       }
     })
 
-    // Create DOM elements
+    // Create DOM elements — use simpler rendering on medium tier
     blobsRef.current.forEach((blob) => {
       const el = document.createElement('div')
-      const blur = 8 + Math.random() * 14
       const r1 = 40 + Math.random() * 20
       const r2 = 40 + Math.random() * 20
       const r3 = 40 + Math.random() * 20
       const r4 = 40 + Math.random() * 20
+      // On medium tier: no filter:blur (very expensive without GPU), use larger/softer gradients instead
+      const useBlur = perfTier === 'high'
+      const blur = useBlur ? (4 + Math.random() * 8) : 0
+      const gradientStop = useBlur ? '70%' : '55%' // Softer edge when no blur
       el.style.cssText = `
         position: absolute;
         width: ${blob.size}px;
         height: ${blob.size}px;
         border-radius: ${r1}% ${r2}% ${r3}% ${r4}%;
-        background: radial-gradient(ellipse at 30% 30%, ${blob.color}, transparent 70%);
+        background: radial-gradient(ellipse at 30% 30%, ${blob.color}, transparent ${gradientStop});
         left: ${blob.x - blob.size / 2}px;
         top: ${blob.y - blob.size / 2}px;
         pointer-events: none;
         will-change: transform;
-        filter: blur(${blur}px);
+        ${blur > 0 ? `filter: blur(${blur}px);` : ''}
       `
       container.appendChild(el)
       blob.el = el
@@ -132,7 +137,7 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
     // IntersectionObserver to pause animations when off-screen
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting)
+        isVisibleRef.current = entry.isIntersecting
       },
       { threshold: 0 }
     )
@@ -140,8 +145,8 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
 
     // Detect reduced motion preference
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const handleReducedMotionChange = (e) => setIsPaused(e.matches)
-    setIsPaused(reducedMotionQuery.matches)
+    const handleReducedMotionChange = (e) => { isPausedRef.current = e.matches }
+    isPausedRef.current = reducedMotionQuery.matches
     reducedMotionQuery.addEventListener('change', handleReducedMotionChange)
 
     // Physics constants
@@ -152,7 +157,7 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
 
     const animate = (timestamp) => {
       // Skip animation if paused or not visible
-      if (isPaused || !isVisible) {
+      if (isPausedRef.current || !isVisibleRef.current) {
         animFrameRef.current = requestAnimationFrame(animate)
         return
       }
@@ -210,13 +215,13 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
         if (b.el && b.el.parentNode) b.el.parentNode.removeChild(b.el)
       })
     }
-  }, [count, isPaused, isVisible])
+  }, [count]) // Only re-run if count prop changes
 
   return (
     <div
       ref={containerRef}
       className={`absolute inset-0 overflow-hidden pointer-events-auto ${className}`}
-      style={{ zIndex: 0, contentVisibility: isVisible ? 'auto' : 'hidden' }}
+      style={{ zIndex: 0 }}
     />
   )
 }

@@ -233,26 +233,30 @@ function seededRng(seed) {
 function FloatingDecorations() {
   const rafRef = useRef(null)
   const itemRefs = useRef([])
-  const [isVisible, setIsVisible] = useState(true)
+  const isVisibleRef = useRef(true)
   const containerRef = useRef(null)
+  const perfTierRef = useRef(window.__perfTier || 'high')
+
+  // On low perf tier or prefers-reduced-motion, skip entirely
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const skipEntirely = prefersReducedMotion || perfTierRef.current === 'low'
 
   /* ── Poisson-disk-ish grid: 7×7 grid, 2 per cell, jittered, with min-distance ── */
   const items = useMemo(() => {
+    if (skipEntirely) return []
     const rand = seededRng(77)
     const placed = []
 
     // Reduce decoration count on low-end devices
     const cores = navigator.hardwareConcurrency || 4
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isMobile = window.innerWidth < 768
-    const perfTier = window.__perfTier || 'high'
-    const cellReduction = (perfTier === 'low' || prefersReducedMotion) ? 0.25
-      : (perfTier === 'medium' || isMobile || cores <= 2) ? 0.4
-      : (cores <= 4) ? 0.6 : 0.85
+    const perfTier = perfTierRef.current
+    const cellReduction = (perfTier === 'medium' || isMobile || cores <= 2) ? 0.35
+      : (cores <= 4) ? 0.5 : 0.75
 
     const cols = Math.ceil(7 * cellReduction)
     const rows = Math.ceil(7 * cellReduction)
-    const perCell = prefersReducedMotion ? 1 : 2
+    const perCell = 1 // reduced from 2 for better perf
     const cellW = 100 / cols
     const cellH = 100 / rows
 
@@ -328,15 +332,18 @@ function FloatingDecorations() {
     // IntersectionObserver to pause when off-screen
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting)
+        isVisibleRef.current = entry.isIntersecting
       },
       { threshold: 0, rootMargin: '100px' }
     )
     observer.observe(container)
 
+    // Skip parallax on medium tier (scroll handlers are expensive)
+    const enableParallax = perfTierRef.current === 'high'
+
     // Throttled scroll handler for better performance
-    const onScroll = throttle(() => {
-      if (!isVisible) return
+    const onScroll = enableParallax ? throttle(() => {
+      if (!isVisibleRef.current) return
       if (rafRef.current) return
       rafRef.current = requestAnimationFrame(() => {
         const sy = window.scrollY
@@ -348,19 +355,25 @@ function FloatingDecorations() {
         })
         rafRef.current = null
       })
-    }, 16) // ~60fps max
+    }, 16) : null // ~60fps max, null if parallax disabled
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    if (onScroll) window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       observer.disconnect()
-      window.removeEventListener('scroll', onScroll)
+      if (onScroll) window.removeEventListener('scroll', onScroll)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [items, isVisible])
+  }, [items])
+
+  if (skipEntirely) return null
+
+  // On medium tier: skip drop-shadow filters (very expensive in software rendering)
+  const useFilters = perfTierRef.current === 'high'
 
   return (
     <>
-      <style>{keyframeCSS}</style>
+      {useFilters && <style>{keyframeCSS}</style>}
+      {!useFilters && <style>{keyframeCSS}</style>}
       <div
         ref={containerRef}
         className="pointer-events-none"
@@ -369,7 +382,6 @@ function FloatingDecorations() {
           inset: 0, 
           zIndex: 1, 
           overflow: 'hidden',
-          contentVisibility: isVisible ? 'auto' : 'hidden'
         }}
         aria-hidden="true"
       >
@@ -381,17 +393,16 @@ function FloatingDecorations() {
               position: 'absolute',
               left: `${item.x}%`,
               top: `${item.y}%`,
-              willChange: 'transform',
+              willChange: perfTierRef.current === 'high' ? 'transform' : 'auto',
             }}
           >
             <div
               style={{
                 opacity: item.opacity,
-                filter: [
+                filter: useFilters ? [
                   `drop-shadow(0 0 ${item.glowStrength}px rgba(74,111,165,${item.glowOpacity}))`,
-                  `drop-shadow(0 0 ${item.glowStrength * 0.4}px rgba(120,160,220,${item.glowOpacity * 0.6}))`,
                   item.blur > 0.1 ? `blur(${item.blur}px)` : '',
-                ].filter(Boolean).join(' '),
+                ].filter(Boolean).join(' ') : (item.blur > 0.1 ? `blur(${item.blur}px)` : 'none'),
                 animation: `fd-${item.id} ${item.floatDuration}s ease-in-out ${item.floatDelay}s infinite`,
               }}
             >

@@ -566,10 +566,37 @@
   animation-fill-mode: forwards;
 }
 
-.animate-float,
-.animate-float-slow,
-.animate-float-delayed {
-  will-change: transform;
+/* Fallback for browsers that don't support backdrop-filter (WebViews, older browsers) */
+@supports not (backdrop-filter: blur(1px)) {
+  .frost-box {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .card, .skill-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .carousel-label {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+  }
+  .carousel-btn {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Also handle -webkit- prefix for Safari/iOS WebView */
+@supports not (-webkit-backdrop-filter: blur(1px)) {
+  @supports not (backdrop-filter: blur(1px)) {
+    .frost-box,
+    .card,
+    .skill-card {
+      background: rgba(255, 255, 255, 0.95) !important;
+    }
+  }
 }
 
 /* Respect user's motion preferences */
@@ -596,6 +623,19 @@
   img {
     transition: none !important;
   }
+
+  .hero-text-glow {
+    animation: none !important;
+    text-shadow: none !important;
+  }
+  .hero-carousel-glow {
+    animation: none !important;
+    box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08) !important;
+  }
+  .nav-link-active {
+    animation: none !important;
+    text-shadow: none !important;
+  }
 }
 
 /* Image optimization */
@@ -610,32 +650,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* GPU-accelerated transforms */
-.card,
-.skill-card,
-.btn-primary,
-.btn-secondary,
-.btn-accent {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Lightbox image rendering */
-.lightbox-image {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
 /* Scrolling performance */
 .section {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
-}
-
-.frost-box,
-.card {
-  backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -724,7 +742,7 @@ html::-webkit-scrollbar {
    Applied by PerformanceMonitor component via classes on <html>
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* MEDIUM tier — reduce visual overhead */
+/* MEDIUM tier — reduce visual overhead, strip expensive filters */
 html.perf-medium .animate-float,
 html.perf-medium .animate-float-slow,
 html.perf-medium .animate-float-delayed {
@@ -732,9 +750,10 @@ html.perf-medium .animate-float-delayed {
 }
 
 html.perf-medium .frost-box,
-html.perf-medium .card {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+html.perf-medium .card,
+html.perf-medium .skill-card {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 html.perf-medium .card:hover {
@@ -742,11 +761,34 @@ html.perf-medium .card:hover {
   box-shadow: 0 4px 16px rgba(0, 94, 184, 0.08);
 }
 
-/* LOW tier — strip expensive effects entirely */
+html.perf-medium .hero-text-glow {
+  animation: none !important;
+  text-shadow: 0 0 4px rgba(0, 94, 184, 0.12) !important;
+}
+
+html.perf-medium .hero-carousel-glow {
+  animation: none !important;
+  box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08) !important;
+}
+
+html.perf-medium .nav-link-active {
+  animation: none !important;
+  text-shadow: 0 0 4px rgba(0, 94, 184, 0.2) !important;
+}
+
+/* LOW tier — strip ALL expensive effects for maximum compatibility */
 html.perf-low .animate-float,
 html.perf-low .animate-float-slow,
 html.perf-low .animate-float-delayed {
   animation: none !important;
+}
+
+html.perf-low .animate-fade-in-up,
+html.perf-low .animate-fade-in-left,
+html.perf-low .animate-fade-in-right {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 html.perf-low .frost-box,
@@ -754,12 +796,35 @@ html.perf-low .card,
 html.perf-low .skill-card {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 
 html.perf-low .card:hover {
   transform: none !important;
-  box-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.perf-low .hero-text-glow {
+  animation: none !important;
+  text-shadow: none !important;
+}
+
+html.perf-low .hero-carousel-glow {
+  animation: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.perf-low .nav-link-active {
+  animation: none !important;
+  text-shadow: none !important;
+}
+
+html.perf-low .carousel-label,
+html.perf-low .carousel-btn {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(255, 255, 255, 0.95) !important;
 }
 
 html.perf-low img {
@@ -768,6 +833,17 @@ html.perf-low img {
 
 html.perf-low .group-hover\:scale-105 {
   transform: none !important;
+}
+
+html.perf-low .btn-primary,
+html.perf-low .btn-secondary,
+html.perf-low .btn-accent {
+  transition-duration: 0.05s !important;
+  box-shadow: none !important;
+}
+
+html.perf-low * {
+  will-change: auto !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
