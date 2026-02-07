@@ -24,8 +24,8 @@ function Services() {
 
   const icons = [HiCalculator, HiBookOpen, HiBeaker, HiGlobe, HiClipboardCheck, HiMusicNote]
   const colors = [
-    { bg: 'rgba(26, 79, 216, 0.08)', icon: '#1a4fd8' },
-    { bg: 'rgba(99, 102, 241, 0.08)', icon: '#6366F1' },
+    { bg: 'rgba(0, 94, 184, 0.08)', icon: '#005EB8' },
+    { bg: 'rgba(0, 116, 224, 0.08)', icon: '#0074E0' },
     { bg: 'rgba(16, 185, 129, 0.08)', icon: '#10B981' },
     { bg: 'rgba(245, 158, 11, 0.08)', icon: '#F59E0B' },
     { bg: 'rgba(239, 68, 68, 0.08)', icon: '#EF4444' },
@@ -84,7 +84,7 @@ function Services() {
                   <span 
                     key={idx}
                     className="px-2.5 py-1 text-xs rounded-full font-medium"
-                    style={{ background: 'rgba(26, 79, 216, 0.06)', color: '#4b5563', border: '1px solid rgba(26, 79, 216, 0.1)' }}
+                    style={{ background: 'rgba(0, 94, 184, 0.06)', color: '#4b5563', border: '1px solid rgba(0, 94, 184, 0.1)' }}
                   >
                     {subject}
                   </span>
@@ -96,7 +96,7 @@ function Services() {
         
         {/* Grade Levels + CTA */}
         <div className="mt-10 sm:mt-16 text-center animate-fade-in-up delay-500">
-          <div className="inline-block p-5 sm:p-8 rounded-3xl shadow-lg" style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(26, 79, 216, 0.1)' }}>
+          <div className="inline-block p-5 sm:p-8 rounded-3xl shadow-lg" style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(0, 94, 184, 0.1)' }}>
             <h3 className="text-xl font-bold mb-6" style={{ color: '#1a2332' }}>
               {sv.allLevels[language]}
             </h3>
@@ -105,7 +105,7 @@ function Services() {
                 <span 
                   key={level}
                   className="px-5 py-2 font-semibold rounded-full text-sm"
-                  style={{ background: 'rgba(26, 79, 216, 0.08)', color: '#1a4fd8', border: '1px solid rgba(26, 79, 216, 0.15)' }}
+                  style={{ background: 'rgba(0, 94, 184, 0.08)', color: '#005EB8', border: '1px solid rgba(0, 94, 184, 0.15)' }}
                 >
                   {level}
                 </span>

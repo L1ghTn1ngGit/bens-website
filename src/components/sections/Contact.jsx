@@ -20,8 +20,8 @@ function Contact() {
       title: c.email[language],
       content: 'bendronedu@gmail.com',
       href: 'mailto:bendronedu@gmail.com',
-      color: 'rgba(26, 79, 216, 0.08)',
-      iconColor: '#1a4fd8',
+      color: 'rgba(0, 94, 184, 0.08)',
+      iconColor: '#005EB8',
     },
     {
       icon: HiPhone,
@@ -36,8 +36,8 @@ function Contact() {
       title: c.locations[language],
       content: c.locationsContent[language],
       href: null,
-      color: 'rgba(99, 102, 241, 0.08)',
-      iconColor: '#6366F1',
+      color: 'rgba(0, 116, 224, 0.08)',
+      iconColor: '#0074E0',
     },
     {
       icon: HiClock,
@@ -72,7 +72,7 @@ function Contact() {
               <div 
                 key={index} 
                 className="p-4 rounded-xl transition-all duration-200 cursor-pointer active:scale-95"
-                style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(26, 79, 216, 0.08)' }}
+                style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(0, 94, 184, 0.08)' }}
               >
                 <div className="flex items-start space-x-4 min-w-0">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: item.color }}>
@@ -98,7 +98,7 @@ function Contact() {
           </div>
           
           {/* Right Side - CTA Card */}
-          <div className="p-8 rounded-3xl shadow-lg animate-fade-in-right delay-300" style={{ background: 'rgba(255, 255, 255, 0.8)', border: '1px solid rgba(26, 79, 216, 0.1)' }}>
+          <div className="p-8 rounded-3xl shadow-lg animate-fade-in-right delay-300" style={{ background: 'rgba(255, 255, 255, 0.8)', border: '1px solid rgba(0, 94, 184, 0.1)' }}>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#1a2332' }}>
               {c.readyTitle[language]}
             </h3>
@@ -107,9 +107,9 @@ function Contact() {
             </p>
             
             {/* Bilingual Note */}
-            <div className="rounded-xl p-4 mb-6" style={{ background: 'rgba(26, 79, 216, 0.03)', border: '1px solid rgba(26, 79, 216, 0.08)' }}>
+            <div className="rounded-xl p-4 mb-6" style={{ background: 'rgba(0, 94, 184, 0.03)', border: '1px solid rgba(0, 94, 184, 0.08)' }}>
               <p className="text-sm" style={{ color: '#6b7280' }}>
-                <span className="font-semibold" style={{ color: '#1a4fd8' }}>{language === 'en' ? 'RU' : 'EN'}</span> &mdash; <span className="italic">{c.bilingualNote[language]}</span>
+                <span className="font-semibold" style={{ color: '#005EB8' }}>{language === 'en' ? 'RU' : 'EN'}</span> &mdash; <span className="italic">{c.bilingualNote[language]}</span>
               </p>
             </div>
             

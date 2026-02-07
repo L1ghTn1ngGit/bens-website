@@ -18,15 +18,15 @@ function About() {
       icon: HiAcademicCap,
       title: a.highlights.honorRoll[language],
       description: a.highlights.honorDesc[language],
-      color: 'rgba(26, 79, 216, 0.08)',
-      iconColor: '#1a4fd8',
+      color: 'rgba(0, 94, 184, 0.08)',
+      iconColor: '#005EB8',
     },
     {
       icon: HiBriefcase,
       title: a.highlights.experience[language],
       description: a.highlights.expDesc[language],
-      color: 'rgba(99, 102, 241, 0.08)',
-      iconColor: '#6366F1',
+      color: 'rgba(0, 116, 224, 0.08)',
+      iconColor: '#0074E0',
     },
     {
       icon: HiMusicNote,
@@ -56,7 +56,7 @@ function About() {
           {/* Left Side - Image */}
           <div className="relative animate-fade-in-left delay-200 self-stretch flex items-center">
             <div className="relative w-full h-full">
-              <div className="rounded-3xl overflow-hidden shadow-xl h-full" style={{ border: '4px solid rgba(26, 79, 216, 0.15)' }}>
+              <div className="rounded-3xl overflow-hidden shadow-xl h-full" style={{ border: '4px solid rgba(0, 94, 184, 0.15)' }}>
                 <img 
                   src="/assets/images/ben-un-3-md.jpg" 
                   alt="Benjamin Dron at the United Nations"
@@ -70,8 +70,8 @@ function About() {
               </div>
               
               {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-4 p-4 rounded-2xl shadow-lg" style={{ background: 'rgba(255, 255, 255, 0.95)', border: '1px solid rgba(26, 79, 216, 0.12)', backdropFilter: 'blur(12px)' }}>
-                <p className="text-3xl font-bold" style={{ color: '#1a4fd8' }}>4+</p>
+              <div className="absolute -bottom-4 -right-4 p-4 rounded-2xl shadow-lg" style={{ background: 'rgba(255, 255, 255, 0.95)', border: '1px solid rgba(0, 94, 184, 0.12)', backdropFilter: 'blur(12px)' }}>
+                <p className="text-3xl font-bold" style={{ color: '#005EB8' }}>4+</p>
                 <p className="text-sm" style={{ color: '#6b7280' }}>{a.yearsTutoring[language]}</p>
               </div>
             </div>
@@ -89,8 +89,8 @@ function About() {
             
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(26, 79, 216, 0.08)' }}>
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#1a4fd8' }}>
+                <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(0, 94, 184, 0.08)' }}>
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#005EB8' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 </span>
@@ -99,8 +99,8 @@ function About() {
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(26, 79, 216, 0.08)' }}>
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#1a4fd8' }}>
+                <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(0, 94, 184, 0.08)' }}>
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#005EB8' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                   </svg>
                 </span>
@@ -111,7 +111,7 @@ function About() {
             </div>
             
             {/* Divider */}
-            <div className="w-full h-px my-6" style={{ background: 'rgba(26, 79, 216, 0.1)' }}></div>
+            <div className="w-full h-px my-6" style={{ background: 'rgba(0, 94, 184, 0.1)' }}></div>
             
             {/* Highlights */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
@@ -119,7 +119,7 @@ function About() {
                 <div 
                   key={index} 
                   className="text-center p-2 sm:p-3 rounded-xl transition-all duration-300"
-                  style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(26, 79, 216, 0.08)' }}
+                  style={{ background: 'rgba(255, 255, 255, 0.7)', border: '1px solid rgba(0, 94, 184, 0.08)' }}
                 >
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center mx-auto mb-1.5 sm:mb-2" style={{ background: item.color }}>
                     <item.icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: item.iconColor }} />
@@ -136,7 +136,7 @@ function About() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center font-medium transition-colors duration-300"
-              style={{ color: '#1a4fd8' }}
+              style={{ color: '#005EB8' }}
             >
               <HiExternalLink className="w-5 h-5 mr-2" />
               {a.viewLinkedIn[language]}

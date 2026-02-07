@@ -20,7 +20,7 @@ function CustomScrollbar() {
   const dragStart = useRef({ y: 0, scrollTop: 0 })
 
   const SCROLL_STEP = 200
-  const PILL_COLOR = '#1a4fd8' // darker blue matching site
+  const PILL_COLOR = '#005EB8' // darker blue matching site
 
   const updatePill = useCallback(() => {
     if (!pillRef.current || !trackRef.current) return

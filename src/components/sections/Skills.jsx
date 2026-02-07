@@ -56,8 +56,8 @@ const debounce = (fn, ms) => {
 }
 
 const skillsMeta = [
-  { id: 1, Icon: MathIcon, color: 'rgba(26, 79, 216, 0.08)', iconColor: '#1a4fd8' },
-  { id: 2, Icon: WritingIcon, color: 'rgba(99, 102, 241, 0.08)', iconColor: '#6366F1' },
+  { id: 1, Icon: MathIcon, color: 'rgba(0, 94, 184, 0.08)', iconColor: '#005EB8' },
+  { id: 2, Icon: WritingIcon, color: 'rgba(0, 116, 224, 0.08)', iconColor: '#0074E0' },
   { id: 3, Icon: ScienceIcon, color: 'rgba(16, 185, 129, 0.08)', iconColor: '#10B981' },
   { id: 4, Icon: GlobeIcon, color: 'rgba(245, 158, 11, 0.08)', iconColor: '#F59E0B' },
   { id: 5, Icon: TargetIcon, color: 'rgba(239, 68, 68, 0.08)', iconColor: '#EF4444' },
@@ -196,7 +196,7 @@ function Skills() {
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === currentIndex ? 'w-8' : ''
                 }`}
-                style={{ background: index === currentIndex ? '#1a4fd8' : 'rgba(26, 79, 216, 0.2)' }}
+                style={{ background: index === currentIndex ? '#005EB8' : 'rgba(0, 94, 184, 0.2)' }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

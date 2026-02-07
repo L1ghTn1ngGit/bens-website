@@ -52,7 +52,7 @@ function Hero() {
             
             <h1 className="font-bold mb-4 leading-tight animate-fade-in-up delay-100" style={{ color: '#1a2332', fontSize: 'clamp(2rem, 6vw, 3.9375rem)' }}>
               {h.titleLine1[language]}
-              <span className="block hero-text-glow" style={{ color: '#1a4fd8' }}>{h.titleLine2[language]}</span>
+              <span className="block hero-text-glow" style={{ color: '#005EB8' }}>{h.titleLine2[language]}</span>
             </h1>
             
             <p className="mb-6 leading-relaxed animate-fade-in-up delay-200" style={{ color: '#4b5563', fontSize: 'clamp(0.9375rem, 1.2vw, 1.125rem)', maxWidth: 'min(100%, clamp(28rem, 40vw, 48rem))' }}>
@@ -79,8 +79,8 @@ function Hero() {
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-5 mt-6 animate-fade-in-up delay-400">
               <div className="flex items-center gap-2.5" style={{ color: '#4b5563' }}>
-                <span className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(26, 79, 216, 0.1)', border: '1px solid rgba(26, 79, 216, 0.2)' }}>
-                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#1a4fd8', width: '1.125rem', height: '1.125rem' }}>
+                <span className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(0, 94, 184, 0.1)', border: '1px solid rgba(0, 94, 184, 0.2)' }}>
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#005EB8', width: '1.125rem', height: '1.125rem' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -88,8 +88,8 @@ function Hero() {
                 <span className="text-sm font-medium">{h.location[language]}</span>
               </div>
               <div className="flex items-center gap-2.5" style={{ color: '#4b5563' }}>
-                <span className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(26, 79, 216, 0.1)', border: '1px solid rgba(26, 79, 216, 0.2)' }}>
-                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#1a4fd8', width: '1.125rem', height: '1.125rem' }}>
+                <span className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(0, 94, 184, 0.1)', border: '1px solid rgba(0, 94, 184, 0.2)' }}>
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#005EB8', width: '1.125rem', height: '1.125rem' }}>
                     <path d="M12 14l9-5-9-5-9 5 9 5z" />
                     <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
@@ -104,9 +104,9 @@ function Hero() {
           <div className="order-1 sm:order-2 flex justify-center animate-fade-in-right delay-200">
             <div className="relative w-full mx-auto hero-carousel-wrap">
               
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl hero-carousel hero-carousel-glow" style={{ border: '5px solid rgba(26, 79, 216, 0.25)' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl hero-carousel hero-carousel-glow" style={{ border: '5px solid rgba(0, 94, 184, 0.25)' }}>
                 {/* 5+ Subjects Badge */}
-                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg animate-float-delayed z-20" style={{ background: 'linear-gradient(135deg, #1a4fd8, #2563EB)' }}>
+                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg animate-float-delayed z-20" style={{ background: 'linear-gradient(135deg, #005EB8, #0074E0)' }}>
                   <p className="text-[10px] sm:text-xs font-bold" style={{ color: '#ffffff' }}>{h.subjects[language]}</p>
                 </div>
                 
@@ -139,7 +139,7 @@ function Hero() {
                 <button 
                   onClick={prevSlide}
                   className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-all z-20"
-                  style={{ background: 'rgba(255, 255, 255, 0.85)', color: '#1a4fd8', border: '1px solid rgba(26, 79, 216, 0.2)' }}
+                  style={{ background: 'rgba(255, 255, 255, 0.85)', color: '#005EB8', border: '1px solid rgba(0, 94, 184, 0.2)' }}
                 >
                   <HiChevronLeft className="w-4 h-4" />
                 </button>
@@ -147,7 +147,7 @@ function Hero() {
                 <button 
                   onClick={nextSlide}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-all z-20"
-                  style={{ background: 'rgba(255, 255, 255, 0.85)', color: '#1a4fd8', border: '1px solid rgba(26, 79, 216, 0.2)' }}
+                  style={{ background: 'rgba(255, 255, 255, 0.85)', color: '#005EB8', border: '1px solid rgba(0, 94, 184, 0.2)' }}
                 >
                   <HiChevronRight className="w-4 h-4" />
                 </button>
@@ -163,17 +163,17 @@ function Hero() {
                     className={`h-2 rounded-full transition-all duration-300 ${
                       idx === currentImg ? 'w-8' : 'w-2'
                     }`}
-                    style={{ background: idx === currentImg ? '#1a4fd8' : 'rgba(26, 79, 216, 0.35)' }}
+                    style={{ background: idx === currentImg ? '#005EB8' : 'rgba(0, 94, 184, 0.35)' }}
                   />
                 ))}
               </div>
               
               {/* Floating Info Cards */}
-              <div className="absolute bottom-2 left-2 sm:-bottom-4 sm:-left-4 px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl shadow-lg animate-float z-20" style={{ background: 'rgba(255, 255, 255, 0.95)', border: '1px solid rgba(26, 79, 216, 0.15)', backdropFilter: 'blur(12px)' }}>
+              <div className="absolute bottom-2 left-2 sm:-bottom-4 sm:-left-4 px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl shadow-lg animate-float z-20" style={{ background: 'rgba(255, 255, 255, 0.95)', border: '1px solid rgba(0, 94, 184, 0.15)', backdropFilter: 'blur(12px)' }}>
                 <p className="text-[10px] sm:text-sm font-medium" style={{ color: '#6b7280' }}>{h.school[language]}</p>
                 <div className="flex items-center gap-1.5">
                   <p className="text-[10px] sm:text-sm font-bold" style={{ color: '#1a2332' }}>{h.honor[language]}</p>
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="#1a4fd8" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="#005EB8" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 </div>

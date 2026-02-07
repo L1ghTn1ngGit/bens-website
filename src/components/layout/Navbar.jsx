@@ -72,7 +72,7 @@ function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
-      style={scrolled ? { background: 'rgba(255, 255, 255, 0.72)', backdropFilter: 'blur(28px) saturate(1.3)', WebkitBackdropFilter: 'blur(28px) saturate(1.3)', border: 'none', borderBottom: '1px solid rgba(255, 255, 255, 0.5)', boxShadow: '0 8px 40px rgba(26, 79, 216, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9)' } : { background: 'transparent' }}
+      style={scrolled ? { background: 'rgba(255, 255, 255, 0.72)', backdropFilter: 'blur(28px) saturate(1.3)', WebkitBackdropFilter: 'blur(28px) saturate(1.3)', border: 'none', borderBottom: '1px solid rgba(255, 255, 255, 0.5)', boxShadow: '0 8px 40px rgba(0, 94, 184, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9)' } : { background: 'transparent' }}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-12" style={{ maxWidth: 'min(95%, 100rem)' }}>
         <div className="flex items-center justify-between h-14 sm:h-16">
@@ -93,10 +93,10 @@ function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`font-medium transition-all duration-400 relative group ${isActive ? 'nav-link-active' : ''}`}
-                  style={{ color: isActive ? '#1a4fd8' : '#4b5563' }}
+                  style={{ color: isActive ? '#005EB8' : '#4b5563' }}
                 >
                   {link.name}
-                  <span className={`nav-underline absolute -bottom-1 left-0 h-0.5 transition-all duration-300 rounded-full ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} style={{ background: '#1a4fd8' }}></span>
+                  <span className={`nav-underline absolute -bottom-1 left-0 h-0.5 transition-all duration-300 rounded-full ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} style={{ background: '#005EB8' }}></span>
                 </a>
               )
             })}
@@ -106,9 +106,9 @@ function Navbar() {
               onClick={toggleLanguage}
               className="relative w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
               style={{ 
-                background: 'rgba(26, 79, 216, 0.08)', 
-                border: '1px solid rgba(26, 79, 216, 0.15)',
-                color: '#1a4fd8'
+                background: 'rgba(0, 94, 184, 0.08)', 
+                border: '1px solid rgba(0, 94, 184, 0.15)',
+                color: '#005EB8'
               }}
               aria-label={language === 'en' ? 'Switch to Russian' : 'Переключить на английский'}
               title={language === 'en' ? 'Переключить на русский' : 'Switch to English'}
@@ -116,7 +116,7 @@ function Navbar() {
               <svg className="w-4.5 h-4.5" style={{ width: '1.125rem', height: '1.125rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="absolute -bottom-0.5 -right-0.5 text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center" style={{ background: '#1a4fd8', color: '#fff', lineHeight: 1 }}>
+              <span className="absolute -bottom-0.5 -right-0.5 text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center" style={{ background: '#005EB8', color: '#fff', lineHeight: 1 }}>
                 {language === 'en' ? 'RU' : 'EN'}
               </span>
             </button>
@@ -136,16 +136,16 @@ function Navbar() {
               onClick={toggleLanguage}
               className="relative w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
               style={{ 
-                background: 'rgba(26, 79, 216, 0.08)', 
-                border: '1px solid rgba(26, 79, 216, 0.15)',
-                color: '#1a4fd8'
+                background: 'rgba(0, 94, 184, 0.08)', 
+                border: '1px solid rgba(0, 94, 184, 0.15)',
+                color: '#005EB8'
               }}
               aria-label={language === 'en' ? 'Switch to Russian' : 'Переключить на английский'}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="absolute -bottom-0.5 -right-0.5 text-[8px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center" style={{ background: '#1a4fd8', color: '#fff', lineHeight: 1 }}>
+              <span className="absolute -bottom-0.5 -right-0.5 text-[8px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center" style={{ background: '#005EB8', color: '#fff', lineHeight: 1 }}>
                 {language === 'en' ? 'RU' : 'EN'}
               </span>
             </button>
@@ -166,7 +166,7 @@ function Navbar() {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 rounded-b-2xl" style={{ background: 'rgba(255, 255, 255, 0.72)', backdropFilter: 'blur(28px) saturate(1.3)', WebkitBackdropFilter: 'blur(28px) saturate(1.3)', borderTop: '1px solid rgba(255, 255, 255, 0.5)', boxShadow: '0 8px 40px rgba(26, 79, 216, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9)' }}>
+          <div className="lg:hidden py-4 rounded-b-2xl" style={{ background: 'rgba(255, 255, 255, 0.72)', backdropFilter: 'blur(28px) saturate(1.3)', WebkitBackdropFilter: 'blur(28px) saturate(1.3)', borderTop: '1px solid rgba(255, 255, 255, 0.5)', boxShadow: '0 8px 40px rgba(0, 94, 184, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9)' }}>
             <div className="flex flex-col space-y-2 px-2">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace('#', '')
@@ -176,7 +176,7 @@ function Navbar() {
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
                     className={`font-medium py-3 px-4 rounded-lg transition-colors duration-300 ${isActive ? 'nav-link-active' : ''}`}
-                    style={{ color: isActive ? '#1a4fd8' : '#4b5563', background: isActive ? 'rgba(26, 79, 216, 0.06)' : 'transparent' }}
+                    style={{ color: isActive ? '#005EB8' : '#4b5563', background: isActive ? 'rgba(0, 94, 184, 0.06)' : 'transparent' }}
                   >
                     {link.name}
                   </a>

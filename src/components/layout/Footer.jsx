@@ -24,7 +24,7 @@ function Footer() {
   ]
 
   return (
-    <footer style={{ background: 'rgba(248, 250, 252, 0.95)', borderTop: '1px solid rgba(26, 79, 216, 0.08)' }}>
+    <footer style={{ background: 'rgba(248, 250, 252, 0.95)', borderTop: '1px solid rgba(0, 94, 184, 0.08)' }}>
       <div className="container-custom py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
           
@@ -43,7 +43,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300"
-                style={{ background: 'rgba(26, 79, 216, 0.06)', color: '#1a4fd8', border: '1px solid rgba(26, 79, 216, 0.1)' }}
+                style={{ background: 'rgba(0, 94, 184, 0.06)', color: '#005EB8', border: '1px solid rgba(0, 94, 184, 0.1)' }}
                 aria-label="LinkedIn"
               >
                 <FaLinkedin className="w-4 h-4" />
@@ -74,8 +74,8 @@ function Footer() {
             <h4 className="font-semibold mb-4" style={{ color: '#1a2332' }}>{f.contactInfo[language]}</h4>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(26, 79, 216, 0.08)' }}>
-                  <HiMail className="w-4 h-4" style={{ color: '#1a4fd8' }} />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(0, 94, 184, 0.08)' }}>
+                  <HiMail className="w-4 h-4" style={{ color: '#005EB8' }} />
                 </div>
                 <a 
                   href="mailto:bendronedu@gmail.com"
@@ -98,8 +98,8 @@ function Footer() {
                 </a>
               </li>
               <li className="flex items-start space-x-3">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(99, 102, 241, 0.08)' }}>
-                  <HiLocationMarker className="w-4 h-4" style={{ color: '#6366F1' }} />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(0, 116, 224, 0.08)' }}>
+                  <HiLocationMarker className="w-4 h-4" style={{ color: '#0074E0' }} />
                 </div>
                 <span className="text-sm" style={{ color: '#6b7280' }}>
                   {f.location[language]}<br />
@@ -111,7 +111,7 @@ function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-10 pt-6 text-center" style={{ borderTop: '1px solid rgba(26, 79, 216, 0.06)' }}>
+        <div className="mt-10 pt-6 text-center" style={{ borderTop: '1px solid rgba(0, 94, 184, 0.06)' }}>
           <p className="text-sm" style={{ color: '#9ca3af' }}>&copy; {currentYear} {f.copyright[language]}</p>
         </div>
       </div>
