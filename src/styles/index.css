@@ -383,6 +383,7 @@
 /* Eyebrow tag — blue theme */
 .eyebrow {
   @apply inline-block px-4 py-1.5 font-medium text-sm rounded-full mb-4;
+  width: fit-content;
   background: rgba(26, 79, 216, 0.08);
   color: #1a4fd8;
   border: 1px solid rgba(26, 79, 216, 0.15);
