@@ -10,6 +10,7 @@ import InteractiveBlobs from './components/ui/InteractiveBlobs'
 import FloatingDecorations from './components/ui/FloatingDecorations'
 import PerformanceMonitor from './components/ui/PerformanceMonitor'
 import CustomScrollbar from './components/ui/CustomScrollbar'
+import EasterEgg from './components/ui/EasterEgg'
 
 function App() {
   // Ensure page starts at top on mount
@@ -24,6 +25,9 @@ function App() {
       
       {/* Custom scrollbar */}
       <CustomScrollbar />
+      
+      {/* Secret Easter egg */}
+      <EasterEgg />
       
       {/* Soft blue animated blob background */}
       <InteractiveBlobs count={25} />
