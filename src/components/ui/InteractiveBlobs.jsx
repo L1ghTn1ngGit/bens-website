@@ -10,10 +10,14 @@ import { useEffect, useRef, useState } from 'react'
 const getOptimalBlobCount = (requestedCount) => {
   const cores = navigator.hardwareConcurrency || 4
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isMobile = window.innerWidth < 768
+  const perfTier = window.__perfTier || 'high'
   
-  if (prefersReducedMotion) return Math.floor(requestedCount * 0.3)
-  if (cores <= 2) return Math.floor(requestedCount * 0.4)
-  if (cores <= 4) return Math.floor(requestedCount * 0.6)
+  if (prefersReducedMotion || perfTier === 'low') return Math.floor(requestedCount * 0.15)
+  if (perfTier === 'medium') return Math.floor(requestedCount * 0.3)
+  if (isMobile) return Math.floor(requestedCount * 0.3)
+  if (cores <= 2) return Math.floor(requestedCount * 0.3)
+  if (cores <= 4) return Math.floor(requestedCount * 0.5)
   return requestedCount
 }
 
@@ -40,12 +44,12 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
 
   // Soft blue palette for light background
   const defaultColors = [
-    'rgba(37, 99, 235, 0.18)',    // blue
+    'rgba(26, 79, 216, 0.18)',    // blue
     'rgba(59, 130, 246, 0.15)',   // lighter blue
     'rgba(96, 165, 250, 0.15)',   // sky blue
     'rgba(99, 102, 241, 0.13)',   // indigo
     'rgba(129, 140, 248, 0.13)', // light indigo
-    'rgba(37, 99, 235, 0.13)',    // blue subtle
+    'rgba(26, 79, 216, 0.13)',    // blue subtle
     'rgba(147, 197, 253, 0.20)', // pale blue
     'rgba(59, 130, 246, 0.10)',   // whisper blue
     'rgba(79, 70, 229, 0.10)',    // violet hint

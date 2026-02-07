@@ -1,8 +1,29 @@
-# Benjamin's Tutoring Services Website
+# Benjamin's Portfolio Website
 
-A modern, responsive website built with React and Tailwind CSS.
+A modern, bilingual portfolio website showcasing tutoring services, achievements, and activities. Built with React, Vite, and Tailwind CSS.
 
-## 📁 Project Structure
+## Features
+
+- Bilingual support (English/Russian) with seamless language switching
+- Responsive design optimized for all screen sizes
+- Image optimization with multiple resolutions and WebP support
+- Interactive hero carousel with smooth transitions
+- Performance-optimized with code splitting and lazy loading
+- Custom scrollbar and floating decorations
+- Skills carousel with responsive card display
+- Photo gallery with hover effects
+- Contact section with social links
+
+## Tech Stack
+
+- React 18.2.0
+- Vite 5.4.21
+- Tailwind CSS 3.4.1
+- React Icons 5.0.1
+- React Scroll 1.9.0
+- Sharp (image optimization)
+
+## Project Structure
 
 ```
 BenWebsite/
@@ -14,113 +35,145 @@ BenWebsite/
 │
 ├── public/
 │   └── assets/
-│       └── images/         # Put your images here
+│       └── images/         # Optimized images with -sm/-md/-lg variants
 │
-├── src/
-│   ├── main.jsx           # React entry point
-│   ├── App.jsx            # Main App component
-│   │
-│   ├── components/
-│   │   ├── layout/        # Layout components
-│   │   │   ├── Navbar.jsx     # Navigation bar
-│   │   │   ├── Footer.jsx     # Page footer
-│   │   │   └── index.js       # Export file
-│   │   │
-│   │   ├── sections/      # Page sections
-│   │   │   ├── Hero.jsx       # Hero/landing section
-│   │   │   ├── About.jsx      # About me section
-│   │   │   ├── Services.jsx   # Services section
-│   │   │   ├── Gallery.jsx    # Photo gallery
-│   │   │   ├── Contact.jsx    # Contact section
-│   │   │   └── index.js       # Export file
-│   │   │
-│   │   └── ui/            # Reusable UI components
-│   │       ├── Button.jsx     # Button component
-│   │       ├── Card.jsx       # Card component
-│   │       ├── SectionHeading.jsx  # Section title
-│   │       └── index.js       # Export file
-│   │
-│   └── styles/
-│       └── index.css      # Main CSS file with Tailwind
+├── scripts/
+│   └── optimize-images.mjs # Image optimization script
 │
-└── Media/                 # Original media files from client
+└── src/
+    ├── main.jsx           # React entry point
+    ├── App.jsx            # Main App component
+    ├── translations.js    # Bilingual content dictionary
+    │
+    ├── context/
+    │   └── LanguageContext.jsx  # Language state management
+    │
+    ├── components/
+    │   ├── layout/
+    │   │   ├── Navbar.jsx       # Navigation bar with language toggle
+    │   │   ├── Footer.jsx       # Page footer
+    │   │   └── index.js
+    │   │
+    │   ├── sections/
+    │   │   ├── Hero.jsx         # Landing carousel
+    │   │   ├── About.jsx        # About section
+    │   │   ├── Services.jsx     # Services offered
+    │   │   ├── Skills.jsx       # Skills carousel
+    │   │   ├── Gallery.jsx      # Photo gallery
+    │   │   ├── Contact.jsx      # Contact information
+    │   │   └── index.js
+    │   │
+    │   └── ui/
+    │       ├── Button.jsx
+    │       ├── Card.jsx
+    │       ├── CustomScrollbar.jsx
+    │       ├── FloatingDecorations.jsx
+    │       ├── InteractiveBlobs.jsx
+    │       ├── PerformanceMonitor.jsx
+    │       ├── ResponsiveImage.jsx
+    │       ├── SectionHeading.jsx
+    │       └── index.js
+    │
+    └── styles/
+        └── index.css      # Global styles and custom components
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
-### 1. Install Dependencies
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd BenWebsite
+```
+
+2. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. Add Your Images
-Copy your images to `public/assets/images/` with these names:
-- `profile-1.jpg` - Main profile photo for hero section
-- `about-1.jpg`, `about-2.jpg`, `about-3.jpg` - About section images
-- `gallery-1.jpg` through `gallery-6.jpg` - Gallery images
-
-### 3. Start Development Server
+3. Start development server
 ```bash
 npm run dev
 ```
-The site will open at http://localhost:3000
+The site will be available at http://localhost:3001
 
-### 4. Build for Production
+### Build for Production
+
 ```bash
 npm run build
 ```
 This creates a `dist` folder ready for deployment.
 
-## 🎨 Color Scheme
+### Preview Production Build
 
-The website uses a blue-green-purple "ink wash" color palette:
-- **Primary**: Blue shades (#0ea5e9)
-- **Secondary**: Green shades (#22c55e)  
-- **Accent**: Purple shades (#a855f7)
+```bash
+npm run preview
+```
 
-Colors can be customized in `tailwind.config.js`.
+## Image Optimization
 
-## 📝 Customization
+The project includes an automated image optimization script:
 
-### Changing Content
-- **Hero text**: Edit `src/components/sections/Hero.jsx`
-- **About info**: Edit `src/components/sections/About.jsx`
-- **Services**: Edit the services array in `src/components/sections/Services.jsx`
-- **Contact info**: Edit `src/components/sections/Contact.jsx`
+```bash
+node scripts/optimize-images.mjs
+```
 
-### Changing Styles
+This generates:
+- Small variant (400px width): `-sm.jpg`
+- Medium variant (800px width): `-md.jpg`
+- Large variant (1200px width): `-lg.jpg`
+- WebP versions of all variants
+
+## Configuration
+
+### Language Content
+
+Edit `src/translations.js` to modify bilingual content.
+
+### Styling
+
 - Global styles: `src/styles/index.css`
-- Tailwind config: `tailwind.config.js`
+- Tailwind configuration: `tailwind.config.js`
+- Component-specific styles: Tailwind utility classes in JSX files
 
-### Adding New Sections
-1. Create a new file in `src/components/sections/`
-2. Export it from `src/components/sections/index.js`
-3. Import and add it to `src/App.jsx`
+### Vite Configuration
 
-## 🔗 Important Links
+The `vite.config.js` includes:
+- Terser minification
+- Manual code splitting (react-vendor, icons)
+- CSS code splitting
+- Port configuration (3001)
 
-- **Contact Form**: https://forms.gle/njc1mkTmSNtNuCa99
-- **LinkedIn**: https://www.linkedin.com/in/benjamin-dron-1907a53a0
-- **Email**: bendronedu@gmail.com
-- **Phone**: (929) 669-5022
+## Performance Optimizations
 
-## 📱 Features
+- Responsive images with srcSet
+- WebP format support
+- Code splitting for vendor bundles
+- Memoized components and callbacks
+- Optimized carousel with debounced scroll handlers
+- Tailwind CSS purging for minimal bundle size
 
-- ✅ Fully responsive design
-- ✅ Smooth scroll navigation
-- ✅ Modern, sleek UI (square corners)
-- ✅ Interactive gallery with lightbox
-- ✅ Mobile-friendly navigation
-- ✅ Optimized for performance
-- ✅ Easy to customize
+## Browser Support
 
-## 🛠 Tech Stack
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- ES2015+ JavaScript support required
+- CSS Grid and Flexbox support required
 
-- **React** - UI library
-- **Tailwind CSS** - Styling
-- **Vite** - Build tool
-- **React Icons** - Icons
+## Contact Information
 
-## 📞 Support
+- Website: http://localhost:3001 (development)
+- Contact Form: https://forms.gle/njc1mkTmSNtNuCa99
+- LinkedIn: https://www.linkedin.com/in/benjamin-dron-1907a53a0
+- Email: bendronedu@gmail.com
+- Phone: (929) 669-5022
 
-For any questions about the website, contact the developer.
+## License
+
+Private project. All rights reserved.

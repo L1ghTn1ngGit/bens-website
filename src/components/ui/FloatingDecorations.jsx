@@ -244,7 +244,11 @@ function FloatingDecorations() {
     // Reduce decoration count on low-end devices
     const cores = navigator.hardwareConcurrency || 4
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const cellReduction = (cores <= 2 || prefersReducedMotion) ? 0.5 : (cores <= 4 ? 0.75 : 1)
+    const isMobile = window.innerWidth < 768
+    const perfTier = window.__perfTier || 'high'
+    const cellReduction = (perfTier === 'low' || prefersReducedMotion) ? 0.25
+      : (perfTier === 'medium' || isMobile || cores <= 2) ? 0.4
+      : (cores <= 4) ? 0.6 : 0.85
 
     const cols = Math.ceil(7 * cellReduction)
     const rows = Math.ceil(7 * cellReduction)
@@ -391,7 +395,7 @@ function FloatingDecorations() {
                 animation: `fd-${item.id} ${item.floatDuration}s ease-in-out ${item.floatDelay}s infinite`,
               }}
             >
-              {icons[item.key](item.size, '#4a6fa5')}
+              {icons[item.key](item.size, '#3a5f95')}
             </div>
           </div>
         ))}

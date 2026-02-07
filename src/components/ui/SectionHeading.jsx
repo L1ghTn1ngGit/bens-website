@@ -30,7 +30,7 @@ function SectionHeading({
       
       {/* Subtitle if provided */}
       {subtitle && (
-        <p className={`text-lg text-gray-600 ${centered ? 'max-w-2xl mx-auto' : ''}`}>
+        <p className={`text-lg text-gray-600 ${centered ? 'mx-auto' : ''}`} style={centered ? { maxWidth: 'min(90%, 56rem)' } : {}}>
           {subtitle}
         </p>
       )}

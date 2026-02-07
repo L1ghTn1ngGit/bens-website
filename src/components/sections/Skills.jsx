@@ -4,8 +4,10 @@
  * Performance optimized with React.memo
  */
 
-import { useState, useEffect, useRef, memo } from 'react'
+import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import { useLanguage } from '../../context/LanguageContext'
+import translations from '../../translations'
 
 /* SVG Icon components */
 const MathIcon = () => (
@@ -44,55 +46,22 @@ const MusicIcon = () => (
   </svg>
 )
 
-const skills = [
-  {
-    id: 1,
-    title: 'Mathematics',
-    Icon: MathIcon,
-    description: 'From basic arithmetic to algebra, geometry, and pre-calculus. Building strong foundations for academic success.',
-    color: 'rgba(37, 99, 235, 0.08)',
-    iconColor: '#2563EB',
-  },
-  {
-    id: 2,
-    title: 'English & ELA',
-    Icon: WritingIcon,
-    description: 'Reading comprehension, writing skills, grammar, and vocabulary development for all grade levels.',
-    color: 'rgba(99, 102, 241, 0.08)',
-    iconColor: '#6366F1',
-  },
-  {
-    id: 3,
-    title: 'Science',
-    Icon: ScienceIcon,
-    description: 'General science, biology, chemistry fundamentals. Making complex concepts easy to understand.',
-    color: 'rgba(16, 185, 129, 0.08)',
-    iconColor: '#10B981',
-  },
-  {
-    id: 4,
-    title: 'History & Social Studies',
-    Icon: GlobeIcon,
-    description: 'US History, World History, and Social Studies. Engaging lessons that bring history to life.',
-    color: 'rgba(245, 158, 11, 0.08)',
-    iconColor: '#F59E0B',
-  },
-  {
-    id: 5,
-    title: 'Test Preparation',
-    Icon: TargetIcon,
-    description: 'SHSAT prep, Regents exams, and standardized test strategies to boost your scores.',
-    color: 'rgba(239, 68, 68, 0.08)',
-    iconColor: '#EF4444',
-  },
-  {
-    id: 6,
-    title: 'Music Lessons',
-    Icon: MusicIcon,
-    description: 'Clarinet and Bass Clarinet instruction for beginner and intermediate students.',
-    color: 'rgba(168, 85, 247, 0.08)',
-    iconColor: '#A855F7',
-  },
+// Simple debounce utility
+const debounce = (fn, ms) => {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => fn(...args), ms)
+  }
+}
+
+const skillsMeta = [
+  { id: 1, Icon: MathIcon, color: 'rgba(26, 79, 216, 0.08)', iconColor: '#1a4fd8' },
+  { id: 2, Icon: WritingIcon, color: 'rgba(99, 102, 241, 0.08)', iconColor: '#6366F1' },
+  { id: 3, Icon: ScienceIcon, color: 'rgba(16, 185, 129, 0.08)', iconColor: '#10B981' },
+  { id: 4, Icon: GlobeIcon, color: 'rgba(245, 158, 11, 0.08)', iconColor: '#F59E0B' },
+  { id: 5, Icon: TargetIcon, color: 'rgba(239, 68, 68, 0.08)', iconColor: '#EF4444' },
+  { id: 6, Icon: MusicIcon, color: 'rgba(168, 85, 247, 0.08)', iconColor: '#A855F7' },
 ]
 
 function Skills() {
@@ -100,27 +69,37 @@ function Skills() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const trackRef = useRef(null)
   const containerRef = useRef(null)
+  const { language } = useLanguage()
+  const s = translations.skills
+
+  const skills = useMemo(() => skillsMeta.map((meta, i) => ({
+    ...meta,
+    title: s.items[i][language].title,
+    description: s.items[i][language].description,
+  })), [language, s.items])
   
-  // Number of visible cards (responsive)
-  const getVisibleCards = () => {
+  // Number of visible cards (responsive) - memoized
+  const getVisibleCards = useCallback(() => {
     if (typeof window === 'undefined') return 3
     if (window.innerWidth < 640) return 1
     if (window.innerWidth < 1024) return 2
-    return 3
-  }
+    if (window.innerWidth < 1536) return 3
+    if (window.innerWidth < 1920) return 4
+    return 5
+  }, [])
   
   const [visibleCards, setVisibleCards] = useState(3)
   
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       setVisibleCards(getVisibleCards())
-    }
+    }, 150)
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [getVisibleCards])
   
-  const maxIndex = Math.max(0, skills.length - visibleCards)
+  const maxIndex = useMemo(() => Math.max(0, skills.length - visibleCards), [skills.length, visibleCards])
   
   // Auto-scroll
   useEffect(() => {
@@ -133,31 +112,31 @@ function Skills() {
     return () => clearInterval(interval)
   }, [isAutoPlaying, maxIndex])
   
-  const goToPrev = () => {
+  const goToPrev = useCallback(() => {
     setIsAutoPlaying(false)
     setCurrentIndex(prev => (prev <= 0 ? maxIndex : prev - 1))
-  }
+  }, [maxIndex])
   
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setIsAutoPlaying(false)
     setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1))
-  }
+  }, [maxIndex])
   
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     setIsAutoPlaying(false)
     setCurrentIndex(index)
-  }
+  }, [])
 
   return (
     <section id="skills" className="section relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="frost-box" style={{ width: '78vw', maxWidth: '78vw', marginLeft: '50%', transform: 'translateX(-50%)' }}>
+        <div className="frost-box frost-box-responsive">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <span className="eyebrow">Expertise</span>
-          <h2 className="section-title">Skills & Subjects</h2>
+          <span className="eyebrow">{s.eyebrow[language]}</span>
+          <h2 className="section-title">{s.title[language]}</h2>
           <p className="section-subtitle">
-            Comprehensive tutoring across multiple subjects, tailored to each student's needs
+            {s.subtitle[language]}
           </p>
         </div>
         
@@ -217,7 +196,7 @@ function Skills() {
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === currentIndex ? 'w-8' : ''
                 }`}
-                style={{ background: index === currentIndex ? '#2563EB' : 'rgba(37, 99, 235, 0.2)' }}
+                style={{ background: index === currentIndex ? '#1a4fd8' : 'rgba(26, 79, 216, 0.2)' }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
