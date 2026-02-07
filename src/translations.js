@@ -31,6 +31,13 @@ const translations = {
     honor: { en: 'Honor Roll', ru: 'Отличник' },
     subjects: { en: '5+ Subjects', ru: '5+ предметов' },
     school: { en: 'Tottenville High School', ru: 'Tottenville High School' },
+    carouselLabels: {
+      benjaminDron: { en: 'Benjamin Dron', ru: 'Бенджамин Дрон' },
+      unYouthDelegate: { en: 'UN Youth Delegate', ru: 'Делегат молодёжи ООН' },
+      aviation: { en: 'Aviation', ru: 'Авиация' },
+      un: { en: 'UN', ru: 'ООН' },
+      band: { en: 'Band', ru: 'Оркестр' },
+    },
   },
 
   // About
