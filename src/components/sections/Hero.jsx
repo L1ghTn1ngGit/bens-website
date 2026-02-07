@@ -15,7 +15,7 @@ const heroImages = [
   { src: '/assets/images/ben-un-2-md.jpg', alt: 'Benjamin at the UN', label: 'UN Youth Delegate', base: '/assets/images/ben-un-2', pos: 'center 55%' },
   { src: '/assets/images/ben-activity-3-md.jpg', alt: 'Benjamin aviation experience', label: 'Aviation', base: '/assets/images/ben-activity-3', pos: 'center center' },
   { src: '/assets/images/ben-activity-1-md.jpg', alt: 'Benjamin in activities', label: 'UN', base: '/assets/images/ben-activity-1', pos: 'center center' },
-  { src: '/assets/images/ben-band-md.jpg', alt: 'Benjamin in band', label: 'Band', base: '/assets/images/ben-band', pos: 'center 30%' },
+  { src: '/assets/images/ben-tottenville-md.jpg', alt: 'Benjamin at Tottenville High School', label: 'Tottenville High School', base: '/assets/images/ben-tottenville', pos: 'center 30%' },
 ]
 
 function Hero() {
