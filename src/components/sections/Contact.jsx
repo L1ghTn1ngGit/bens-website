@@ -106,11 +106,18 @@ function Contact() {
               {c.readyDesc[language]}
             </p>
             
-            {/* Bilingual Note */}
-            <div className="rounded-xl p-4 mb-6" style={{ background: 'rgba(0, 94, 184, 0.03)', border: '1px solid rgba(0, 94, 184, 0.08)' }}>
-              <p className="text-sm" style={{ color: '#6b7280' }}>
-                <span className="font-semibold" style={{ color: '#005EB8' }}>{language === 'en' ? 'RU' : 'EN'}</span> &mdash; <span className="italic">{c.bilingualNote[language]}</span>
-              </p>
+            {/* Language Support */}
+            <div className="rounded-xl p-4 mb-6 flex flex-wrap gap-2" style={{ background: 'rgba(0, 94, 184, 0.03)', border: '1px solid rgba(0, 94, 184, 0.08)' }}>
+              {['en', 'ru', 'uk'].filter(l => l !== language).map((l) => (
+                <span
+                  key={l}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1"
+                  style={{ background: 'rgba(0, 94, 184, 0.08)', color: '#005EB8' }}
+                >
+                  <span>{l === 'en' ? '🇺🇸' : l === 'ru' ? '🇷🇺' : '🇺🇦'}</span>
+                  {c.langSupport[l][language]} — {c.langAvailable[language]}
+                </span>
+              ))}
             </div>
             
             {/* CTA Button */}

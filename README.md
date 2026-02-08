@@ -1,4 +1,4 @@
-# Benjamin's Tutoring Website
+# Dron's Tutoring Website
 
 A bilingual (English/Russian) portfolio website built with React, Vite, and Tailwind CSS.
 

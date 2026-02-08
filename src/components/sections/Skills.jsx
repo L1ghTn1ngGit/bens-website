@@ -1,6 +1,6 @@
 /**
  * Skills Section Component
- * Card carousel showcasing Benjamin's tutoring skills - SVG icons only
+ * Card carousel showcasing Dron's tutoring skills - SVG icons only
  * Performance optimized with React.memo
  */
 

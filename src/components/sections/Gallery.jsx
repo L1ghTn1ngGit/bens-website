@@ -1,6 +1,6 @@
 /**
  * Gallery Section Component
- * Displays photos of Benjamin in action
+ * Displays photos of Benjamin Dron in action
  * Performance optimized: lazy loading, React.memo, responsive aspect ratios
  */
 

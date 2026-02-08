@@ -1,6 +1,6 @@
 /**
  * About Section Component
- * Light blue theme — bilingual info about Benjamin with Media images
+ * Light blue theme — bilingual info about Benjamin Dron with Media images
  * Performance optimized: lazy loading, React.memo
  */
 
