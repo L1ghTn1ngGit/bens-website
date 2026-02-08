@@ -298,6 +298,40 @@
   @apply right-0 translate-x-1/2;
 }
 
+/* Contact email break control
+   Cards layout: 1-col → sm:2-col → lg:1-col → 2xl:2-col
+   Break only when cards are 2-col and tight */
+.contact-break {
+  display: none;
+}
+
+/* sm to lg: cards 2-col, main 1-col → each card ~45% width, tight */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .contact-break {
+    display: block;
+  }
+}
+
+/* lg to 2xl: cards 1-col, full width → no break needed */
+
+/* 2xl+: cards 2-col again, main 2-col → each card ~350px */
+@media (min-width: 1536px) {
+  .contact-break {
+    display: block;
+  }
+}
+
+/* 3xl+ equivalent: very wide screens, cards have plenty of room */
+@media (min-width: 1920px) {
+  .contact-break {
+    display: none;
+  }
+}
+
+.contact-text {
+  display: inline;
+}
+
 /* Floating avatars */
 .floating-avatar {
   @apply absolute rounded-full shadow-lg overflow-hidden;

@@ -18,7 +18,7 @@ function Contact() {
     {
       icon: HiMail,
       title: c.email[language],
-      content: 'bendronedu@gmail.com',
+      content: <span className="contact-text">bendronedu@<br className="contact-break"/>gmail.com</span>,
       href: 'mailto:bendronedu@gmail.com',
       color: 'rgba(0, 94, 184, 0.08)',
       iconColor: '#005EB8',
@@ -30,7 +30,6 @@ function Contact() {
       href: 'tel:+19296695022',
       color: 'rgba(16, 185, 129, 0.08)',
       iconColor: '#10B981',
-      noWrap: true,
     },
     {
       icon: HiLocationMarker,
@@ -68,7 +67,7 @@ function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10 items-start">
           
           {/* Left Side - Contact Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-left delay-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2 gap-4 animate-fade-in-left delay-200">
             {contactInfo.map((item, index) => (
               <div 
                 key={index} 
@@ -85,7 +84,7 @@ function Contact() {
                       <a 
                         href={item.href}
                         className="transition-colors leading-snug"
-                        style={{ color: '#6b7280', fontSize: item.noWrap ? '0.8125rem' : '0.875rem', whiteSpace: item.noWrap ? 'nowrap' : 'normal' }}
+                        style={{ color: '#6b7280', fontSize: '0.875rem' }}
                       >
                         {item.content}
                       </a>
