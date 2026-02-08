@@ -18,7 +18,7 @@ function Contact() {
     {
       icon: HiMail,
       title: c.email[language],
-      content: <span>bendronedu@<br/>gmail.com</span>,
+      content: 'bendronedu@gmail.com',
       href: 'mailto:bendronedu@gmail.com',
       color: 'rgba(0, 94, 184, 0.08)',
       iconColor: '#005EB8',
