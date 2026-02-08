@@ -9,10 +9,12 @@ import { Button } from '../ui'
 import { HiMail, HiPhone, HiLocationMarker, HiClock, HiArrowRight } from 'react-icons/hi'
 import { useLanguage } from '../../context/LanguageContext'
 import translations from '../../translations'
+import { useSectionGlow } from '../../hooks/useSectionGlow'
 
 function Contact() {
   const { language } = useLanguage()
   const c = translations.contact
+  const glowRef = useSectionGlow()
 
   const contactInfo = [
     {
@@ -52,7 +54,7 @@ function Contact() {
   return (
     <section id="contact" className="section relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="frost-box frost-box-responsive">
+        <div ref={glowRef} className="frost-box frost-box-responsive">
         
         {/* Section Heading */}
         <div className="text-center mb-8">

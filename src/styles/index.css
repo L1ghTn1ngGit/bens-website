@@ -907,27 +907,16 @@ html.perf-low * {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   NAVBAR ACTIVE SECTION GLOW
+   NAVBAR ACTIVE SECTION - NO GLOW
    ═══════════════════════════════════════════════════════════════════════════ */
-@keyframes navGlowPulse {
-  0%, 100% {
-    text-shadow: 0 0 6px rgba(0, 94, 184, 0.35), 0 0 14px rgba(0, 94, 184, 0.15);
-  }
-  50% {
-    text-shadow: 0 0 10px rgba(0, 94, 184, 0.5), 0 0 22px rgba(0, 94, 184, 0.25);
-  }
-}
-
 .nav-link-active {
   color: #005EB8 !important;
-  animation: navGlowPulse 2.5s ease-in-out infinite;
-  transition: color 0.4s ease, text-shadow 0.4s ease;
+  transition: color 0.4s ease;
 }
 
 .nav-link-active .nav-underline {
   width: 100% !important;
   background: #005EB8 !important;
-  box-shadow: 0 0 6px rgba(0, 94, 184, 0.5);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -941,4 +930,20 @@ html.perf-low * {
 
 .hero-carousel-glow {
   box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION ENTRANCE GLOW - SUBTLE FADE OUT
+   ═══════════════════════════════════════════════════════════════════════════ */
+@keyframes subtleGlowFadeOut {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 94, 184, 0.08), 0 0 40px rgba(0, 94, 184, 0.04);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 94, 184, 0), 0 0 0 rgba(0, 94, 184, 0);
+  }
+}
+
+.section-entrance-glow {
+  animation: subtleGlowFadeOut 5s ease-out forwards;
 }

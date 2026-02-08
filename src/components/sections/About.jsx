@@ -8,10 +8,12 @@ import { memo } from 'react'
 import { HiAcademicCap, HiMusicNote, HiBriefcase, HiExternalLink } from 'react-icons/hi'
 import { useLanguage } from '../../context/LanguageContext'
 import translations from '../../translations'
+import { useSectionGlow } from '../../hooks/useSectionGlow'
 
 function About() {
   const { language } = useLanguage()
   const a = translations.about
+  const glowRef = useSectionGlow()
 
   const highlights = [
     {
@@ -40,7 +42,7 @@ function About() {
   return (
     <section id="about" className="section relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '1rem' }}>
       <div className="container-custom relative z-10">
-        <div className="frost-box frost-box-responsive">
+        <div ref={glowRef} className="frost-box frost-box-responsive">
         
         {/* Section Heading */}
         <div className="text-center mb-6">

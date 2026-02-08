@@ -17,10 +17,12 @@ import {
 import Button from '../ui/Button'
 import { useLanguage } from '../../context/LanguageContext'
 import translations from '../../translations'
+import { useSectionGlow } from '../../hooks/useSectionGlow'
 
 function Services() {
   const { language } = useLanguage()
   const sv = translations.services
+  const glowRef = useSectionGlow()
 
   const icons = [HiCalculator, HiBookOpen, HiBeaker, HiGlobe, HiClipboardCheck, HiMusicNote]
   const colors = [
@@ -44,7 +46,7 @@ function Services() {
   return (
     <section id="services" className="section relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="frost-box frost-box-responsive">
+        <div ref={glowRef} className="frost-box frost-box-responsive">
         
         {/* Section Heading */}
         <div className="text-center mb-8">

@@ -8,6 +8,7 @@ import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import { useLanguage } from '../../context/LanguageContext'
 import translations from '../../translations'
+import { useSectionGlow } from '../../hooks/useSectionGlow'
 
 /* SVG Icon components */
 const MathIcon = () => (
@@ -71,6 +72,7 @@ function Skills() {
   const containerRef = useRef(null)
   const { language } = useLanguage()
   const s = translations.skills
+  const glowRef = useSectionGlow()
 
   const skills = useMemo(() => skillsMeta.map((meta, i) => ({
     ...meta,
@@ -130,7 +132,7 @@ function Skills() {
   return (
     <section id="skills" className="section relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="frost-box frost-box-responsive">
+        <div ref={glowRef} className="frost-box frost-box-responsive">
         {/* Section Header */}
         <div className="text-center mb-8">
           <span className="eyebrow">{s.eyebrow[language]}</span>
