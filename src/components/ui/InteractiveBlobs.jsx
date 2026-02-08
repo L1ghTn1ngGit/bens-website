@@ -1,7 +1,7 @@
 /**
  * InteractiveBlobs Component
- * Soft blue blobs with passive drift + mouse repulsion on light background
- * Performance optimized: skips entirely on low-end devices, reduced count on medium tier
+ * Soft blue blobs with passive drift animation - decorative background elements
+ * Non-interactive, purely visual enhancement with performance optimization
  */
 
 import { useEffect, useRef } from 'react'
@@ -21,22 +21,9 @@ const getOptimalBlobCount = (requestedCount) => {
   return requestedCount
 }
 
-// Throttle helper
-const throttle = (func, delay) => {
-  let lastCall = 0
-  return (...args) => {
-    const now = Date.now()
-    if (now - lastCall >= delay) {
-      lastCall = now
-      func(...args)
-    }
-  }
-}
-
 function InteractiveBlobs({ count = 40, colors, className = '' }) {
   const containerRef = useRef(null)
   const blobsRef = useRef([])
-  const mouseRef = useRef({ x: -1000, y: -1000 })
   const animFrameRef = useRef(null)
   const timeRef = useRef(0)
   const isVisibleRef = useRef(true)
@@ -121,18 +108,7 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
       blob.el = el
     })
 
-    // Mouse tracking - throttled for performance
-    const handleMouseMove = throttle((e) => {
-      const r = container.getBoundingClientRect()
-      mouseRef.current = { x: e.clientX - r.left, y: e.clientY - r.top + window.scrollY }
-    }, 32) // ~30fps for mouse tracking
-
-    const handleMouseLeave = () => {
-      mouseRef.current = { x: -1000, y: -1000 }
-    }
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('mouseleave', handleMouseLeave)
+    // No mouse interaction - blobs are purely decorative with passive drift
 
     // IntersectionObserver to pause animations when off-screen
     const observer = new IntersectionObserver(
@@ -150,8 +126,6 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
     reducedMotionQuery.addEventListener('change', handleReducedMotionChange)
 
     // Physics constants
-    const repelRadius = 200
-    const repelStrength = 5
     const returnStrength = 0.015
     const damping = 0.94
 
@@ -164,26 +138,13 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
 
       timeRef.current = timestamp || 0
       const t = timeRef.current
-      const mx = mouseRef.current.x
-      const my = mouseRef.current.y
 
       blobsRef.current.forEach(blob => {
-        // Passive sinusoidal drift
+        // Passive sinusoidal drift only
         const driftX = Math.sin(t * blob.driftFreqX + blob.driftPhase) * blob.driftAmpX
         const driftY = Math.cos(t * blob.driftFreqY + blob.driftPhase * 1.3) * blob.driftAmpY
         const targetX = blob.originX + driftX
         const targetY = blob.originY + driftY
-
-        // Mouse repulsion
-        const dx = blob.x - mx
-        const dy = blob.y - my
-        const dist = Math.sqrt(dx * dx + dy * dy)
-
-        if (dist < repelRadius && dist > 0) {
-          const force = (1 - dist / repelRadius) * repelStrength
-          blob.vx += (dx / dist) * force
-          blob.vy += (dy / dist) * force
-        }
 
         // Spring toward drifting target
         blob.vx += (targetX - blob.x) * returnStrength
@@ -206,8 +167,6 @@ function InteractiveBlobs({ count = 40, colors, className = '' }) {
     animate(0)
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseleave', handleMouseLeave)
       observer.disconnect()
       reducedMotionQuery.removeEventListener('change', handleReducedMotionChange)
       cancelAnimationFrame(animFrameRef.current)
