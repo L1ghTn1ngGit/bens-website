@@ -1,3 +1,37 @@
+/* Experience Carousel Infinite Scroll Animation */
+@keyframes carouselScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments for carousel */
+.experience-carousel-track {
+  min-width: 100vw;
+  width: max-content;
+  animation: carouselScroll 32s linear infinite !important;
+}
+@media (max-width: 640px) {
+  .experience-carousel-track > div {
+    width: 110px !important;
+    max-width: 28vw !important;
+  }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .experience-carousel-track > div {
+    width: 130px !important;
+    max-width: 20vw !important;
+  }
+}
+@media (min-width: 1025px) {
+  .experience-carousel-track > div {
+    width: 140px !important;
+    max-width: 18vw !important;
+  }
+}
 /* 
   Main CSS file for Dron's Tutoring Website
   Clean Blue Light Theme
