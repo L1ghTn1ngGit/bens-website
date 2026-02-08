@@ -11,8 +11,8 @@ import { useLanguage } from '../../context/LanguageContext'
 import translations from '../../translations'
 
 const heroImages = [
-  { src: '/assets/images/ben-un-main-md.jpg', alt: 'Benjamin Dron at the UN', labelKey: 'benjaminDron', base: '/assets/images/ben-un-main', pos: 'center 30%' },
-  { src: '/assets/images/ben-un-2-md.jpg', alt: 'Benjamin at the UN', labelKey: 'unYouthDelegate', base: '/assets/images/ben-un-2', pos: 'center 55%' },
+  { src: '/assets/images/ben-un-2-md.jpg', alt: 'Benjamin at the UN', labelKey: 'benjaminDron', base: '/assets/images/ben-un-2', pos: 'center 55%' },
+  { src: '/assets/images/ben-un-main-md.jpg', alt: 'Benjamin Dron at the UN', labelKey: 'unYouthDelegate', base: '/assets/images/ben-un-main', pos: 'center 30%' },
   { src: '/assets/images/ben-activity-3-md.jpg', alt: 'Benjamin aviation experience', labelKey: 'aviation', base: '/assets/images/ben-activity-3', pos: 'center center' },
   { src: '/assets/images/ben-activity-1-md.jpg', alt: 'Benjamin in activities', labelKey: 'un', base: '/assets/images/ben-activity-1', pos: 'center center' },
   { src: '/assets/images/ben-band-md.jpg', alt: 'Benjamin in band', labelKey: 'band', base: '/assets/images/ben-band', pos: 'center 30%' },

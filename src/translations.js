@@ -33,7 +33,7 @@ const translations = {
     subjects: { en: '5+ Subjects', ru: '5+ предметов', uk: '5+ предметів' },
     school: { en: 'Tottenville High School', ru: 'Tottenville High School', uk: 'Tottenville High School' },
     carouselLabels: {
-      benjaminDron: { en: 'Benjamin Dron', ru: 'Бенджамин Дрон', uk: 'Бенджамін Дрон' },
+      benjaminDron: { en: 'Benjamin Dron | UN Youth Delegate', ru: 'Бенджамин Дрон | Делегат молодёжи ООН', uk: 'Бенджамін Дрон | Делегат молоді ООН' },
       unYouthDelegate: { en: 'UN Youth Delegate', ru: 'Делегат молодёжи ООН', uk: 'Делегат молоді ООН' },
       aviation: { en: 'Aviation', ru: 'Авиация', uk: 'Авіація' },
       un: { en: 'UN', ru: 'ООН', uk: 'ООН' },

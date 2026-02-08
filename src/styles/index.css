@@ -899,38 +899,12 @@ html.perf-low * {
 /* ═══════════════════════════════════════════════════════════════════════════
    HERO LOAD GLOW EFFECT
    ═══════════════════════════════════════════════════════════════════════════ */
-@keyframes heroTextGlow {
-  0% {
-    text-shadow: 0 0 20px rgba(0, 94, 184, 0.8), 0 0 40px rgba(0, 94, 184, 0.5), 0 0 60px rgba(0, 94, 184, 0.3);
-  }
-  70% {
-    text-shadow: 0 0 12px rgba(0, 94, 184, 0.4), 0 0 24px rgba(0, 94, 184, 0.2), 0 0 36px rgba(0, 94, 184, 0.1);
-  }
-  100% {
-    text-shadow: 0 0 4px rgba(0, 94, 184, 0.12), 0 0 8px rgba(0, 94, 184, 0.06);
-  }
-}
-
-@keyframes heroCarouselGlow {
-  0% {
-    box-shadow: 0 0 24px rgba(0, 94, 184, 0.6), 0 0 48px rgba(0, 94, 184, 0.35), 0 0 72px rgba(0, 94, 184, 0.2);
-  }
-  70% {
-    box-shadow: 0 0 14px rgba(0, 94, 184, 0.3), 0 0 28px rgba(0, 94, 184, 0.15);
-  }
-  100% {
-    box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08);
-  }
-}
+/* Hero glow effects removed */
 
 .hero-text-glow {
-  animation: heroTextGlow 2.8s ease-out forwards;
-  animation-delay: 0.3s;
-  text-shadow: 0 0 20px rgba(0, 94, 184, 0.8), 0 0 40px rgba(0, 94, 184, 0.5), 0 0 60px rgba(0, 94, 184, 0.3);
+  /* No glow animation */
 }
 
 .hero-carousel-glow {
-  animation: heroCarouselGlow 3s ease-out forwards;
-  animation-delay: 0.2s;
-  box-shadow: 0 0 24px rgba(0, 94, 184, 0.6), 0 0 48px rgba(0, 94, 184, 0.35), 0 0 72px rgba(0, 94, 184, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08);
 }
