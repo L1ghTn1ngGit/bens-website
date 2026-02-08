@@ -7,9 +7,9 @@
 import { memo } from 'react'
 
 function getVariants(src) {
-  // src = '/assets/images/gallery-1.jpg'
+  // src = '/assets/images/gallery/gallery-1.jpg'
   const dot = src.lastIndexOf('.')
-  const base = src.slice(0, dot)  // '/assets/images/gallery-1'
+  const base = src.slice(0, dot)  // '/assets/images/gallery/gallery-1'
   const ext = src.slice(dot)      // '.jpg'
   
   return {

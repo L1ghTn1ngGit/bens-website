@@ -947,3 +947,60 @@ html.perf-low * {
 .section-entrance-glow {
   animation: subtleGlowFadeOut 5s ease-out forwards;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EXPERIENCE CAROUSEL - SEAMLESS AUTO-SCROLL
+   ═══════════════════════════════════════════════════════════════════════════ */
+@keyframes experienceScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@-webkit-keyframes experienceScroll {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+.experience-carousel-track {
+  animation: experienceScroll 45s linear infinite;
+  -webkit-animation: experienceScroll 45s linear infinite;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+.experience-carousel-track:hover {
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .experience-carousel-track {
+    animation: experienceScroll 120s linear infinite;
+    -webkit-animation: experienceScroll 120s linear infinite;
+  }
+}
+
+/* Experience carousel logo styling */
+.experience-carousel-track img {
+  background: transparent !important;
+}
+
+.experience-carousel-track img[src*=".svg"] {
+  mix-blend-mode: normal;
+}
+
+.experience-carousel-track img[src*=".png"] {
+  mix-blend-mode: normal;
+}

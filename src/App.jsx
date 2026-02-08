@@ -11,6 +11,7 @@ import FloatingDecorations from './components/ui/FloatingDecorations'
 import PerformanceMonitor from './components/ui/PerformanceMonitor'
 import CustomScrollbar from './components/ui/CustomScrollbar'
 import EasterEgg from './components/ui/EasterEgg'
+import ExperienceCarousel from './components/ui/ExperienceCarousel'
 
 function App() {
   // Ensure page starts at top on mount
@@ -41,6 +42,7 @@ function App() {
       {/* Main Content */}
       <main className="relative z-10">
         <Hero />
+        <ExperienceCarousel />
         <About />
         <Skills />
         <Services />

@@ -14,14 +14,14 @@ function Gallery() {
 
   // Gallery images - organized by Benjamin's activities (memoized)
   const images = useMemo(() => [
-    { src: '/assets/images/gallery-1-md.jpg', srcSet: '/assets/images/gallery-1-sm.jpg 400w, /assets/images/gallery-1-md.jpg 800w, /assets/images/gallery-1-lg.jpg 1200w', alt: 'Benjamin at the United Nations', category: 'UN' },
-    { src: '/assets/images/gallery-2-md.jpg', srcSet: '/assets/images/gallery-2-sm.jpg 400w, /assets/images/gallery-2-md.jpg 800w, /assets/images/gallery-2-lg.jpg 1200w', alt: 'UN General Assembly', category: 'UN' },
-    { src: '/assets/images/gallery-3-md.jpg', srcSet: '/assets/images/gallery-3-sm.jpg 400w, /assets/images/gallery-3-md.jpg 800w, /assets/images/gallery-3-lg.jpg 1200w', alt: 'Youth Participant at DESA', category: 'UN' },
-    { src: '/assets/images/gallery-4-md.jpg', srcSet: '/assets/images/gallery-4-sm.jpg 400w, /assets/images/gallery-4-md.jpg 800w, /assets/images/gallery-4-lg.jpg 1200w', alt: 'Music with clarinet', category: 'Music' },
-    { src: '/assets/images/gallery-5-md.jpg', srcSet: '/assets/images/gallery-5-sm.jpg 400w, /assets/images/gallery-5-md.jpg 800w, /assets/images/gallery-5-lg.jpg 1200w', alt: 'Band friends', category: 'Music' },
-    { src: '/assets/images/gallery-6-md.jpg', srcSet: '/assets/images/gallery-6-sm.jpg 400w, /assets/images/gallery-6-md.jpg 800w, /assets/images/gallery-6-lg.jpg 1200w', alt: 'Aviation experience', category: 'Aviation' },
-    { src: '/assets/images/gallery-7-md.jpg', srcSet: '/assets/images/gallery-7-sm.jpg 400w, /assets/images/gallery-7-md.jpg 800w, /assets/images/gallery-7-lg.jpg 1200w', alt: 'Cockpit view', category: 'Aviation' },
-    { src: '/assets/images/gallery-8-md.jpg', srcSet: '/assets/images/gallery-8-sm.jpg 400w, /assets/images/gallery-8-md.jpg 800w, /assets/images/gallery-8-lg.jpg 1200w', alt: 'Professional portrait', category: 'Professional' },
+    { src: '/assets/images/gallery/gallery-1-md.jpg', srcSet: '/assets/images/gallery/gallery-1-sm.jpg 400w, /assets/images/gallery/gallery-1-md.jpg 800w, /assets/images/gallery/gallery-1-lg.jpg 1200w', alt: 'Benjamin at the United Nations', category: 'UN' },
+    { src: '/assets/images/gallery/gallery-2-md.jpg', srcSet: '/assets/images/gallery/gallery-2-sm.jpg 400w, /assets/images/gallery/gallery-2-md.jpg 800w, /assets/images/gallery/gallery-2-lg.jpg 1200w', alt: 'UN General Assembly', category: 'UN' },
+    { src: '/assets/images/gallery/gallery-3-md.jpg', srcSet: '/assets/images/gallery/gallery-3-sm.jpg 400w, /assets/images/gallery/gallery-3-md.jpg 800w, /assets/images/gallery/gallery-3-lg.jpg 1200w', alt: 'Youth Participant at DESA', category: 'UN' },
+    { src: '/assets/images/gallery/gallery-4-md.jpg', srcSet: '/assets/images/gallery/gallery-4-sm.jpg 400w, /assets/images/gallery/gallery-4-md.jpg 800w, /assets/images/gallery/gallery-4-lg.jpg 1200w', alt: 'Music with clarinet', category: 'Music' },
+    { src: '/assets/images/gallery/gallery-5-md.jpg', srcSet: '/assets/images/gallery/gallery-5-sm.jpg 400w, /assets/images/gallery/gallery-5-md.jpg 800w, /assets/images/gallery/gallery-5-lg.jpg 1200w', alt: 'Band friends', category: 'Music' },
+    { src: '/assets/images/gallery/gallery-6-md.jpg', srcSet: '/assets/images/gallery/gallery-6-sm.jpg 400w, /assets/images/gallery/gallery-6-md.jpg 800w, /assets/images/gallery/gallery-6-lg.jpg 1200w', alt: 'Aviation experience', category: 'Aviation' },
+    { src: '/assets/images/gallery/gallery-7-md.jpg', srcSet: '/assets/images/gallery/gallery-7-sm.jpg 400w, /assets/images/gallery/gallery-7-md.jpg 800w, /assets/images/gallery/gallery-7-lg.jpg 1200w', alt: 'Cockpit view', category: 'Aviation' },
+    { src: '/assets/images/gallery/gallery-8-md.jpg', srcSet: '/assets/images/gallery/gallery-8-sm.jpg 400w, /assets/images/gallery/gallery-8-md.jpg 800w, /assets/images/gallery/gallery-8-lg.jpg 1200w', alt: 'Professional portrait', category: 'Professional' },
   ], [])
 
   const openLightbox = useCallback((index) => setSelectedIndex(index), [])

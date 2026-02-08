@@ -60,11 +60,11 @@ function About() {
             <div className="relative w-full h-full">
               <div className="rounded-3xl overflow-hidden shadow-xl h-full" style={{ border: '4px solid rgba(0, 94, 184, 0.15)' }}>
                 <img 
-                  src="/assets/images/ben-un-3-md.jpg" 
+                  src="/assets/images/about/ben-un-3-md.jpg" 
                   alt="Benjamin Dron at the United Nations"
                   loading="lazy"
                   decoding="async"
-                  srcSet="/assets/images/ben-un-3-sm.jpg 400w, /assets/images/ben-un-3-md.jpg 800w, /assets/images/ben-un-3-lg.jpg 1200w"
+                  srcSet="/assets/images/about/ben-un-3-sm.jpg 400w, /assets/images/about/ben-un-3-md.jpg 800w, /assets/images/about/ben-un-3-lg.jpg 1200w"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
                   className="w-full h-full object-cover about-image"
                   style={{ minHeight: '20rem', contentVisibility: 'auto', objectPosition: 'center 35%' }}
